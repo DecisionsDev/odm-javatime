@@ -208,11 +208,6 @@ Create a pull request with your changes and we'll review and merge it for others
    ```
    Builds: All distributions and Eclipse plugin
 
-   **Build with no profile (integration tests only):**
-   ```bash
-   mvn clean install
-   ```
-   Builds: Integration tests only (useful for developement only)
 
 ### Build Outputs
 
