@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>birthday countdown</name>
+  <uuid>3e4c9741-8d63-4ee6-af20-74a7543c7fea</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+	set 'birth date' to the birth date of 'the customer'; 
+	set 'today' to now; 
+	set 'birhday' to 'birth date' + the duration in years between 'birth date' and today;
+if 
+	birhday is after today 
+then 
+	print "Only " + the number of days between today and birhday + " days left until your birthday.";
+else
+	print "Only " + the number of days between today and (birhday + 1 year) + " days left until your birthday.";
+	]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

@@ -1,0 +1,465 @@
+
+property uuid "c6f56731-599b-4f49-b47d-288087399667"
+
+package ilog.rules.brl;
+
+class Date extends java.util.Date
+  #valueType
+  property valueDescriptor "ilog.rules.brl.value.descriptor.IlrFullDateValueDescriptor"
+  property valueEditor "ilog.rules.brl.ui.value.editor.IlrFullDateValueEditor"
+  property valueTranslator.irl "ilog.rules.brl.translation.codegen.IlrIRLDateTranslator"
+  property dtCheckerDescriptor "ilog.rules.dt.model.services.check.descriptor.IlrDTDateCheckerDescriptor"
+  property valueFormatter "{0,date}"
+  #vocabularyClass
+  #hiddenType
+{
+  Date(long date);
+  Date(ilog.rules.brl.Date date);
+  Date(java.util.Date date)
+  	property "factory.default" "true";
+  int compareTo(java.util.Date o);
+  int compareTo(ilog.rules.brl.Date o);
+
+  //java.util.Date toJavaUtilDate();
+  
+  // Business members
+  boolean after(ilog.rules.brl.Date after)
+    property translation.irl "{this}.compareTo({0}) > 0"
+    property translation.sql "{this} > {0}"
+    property propagateAssignableArgumentType "true"
+    property noTruncation "true"    
+    property computeBestType "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean afterOrEquals(ilog.rules.brl.Date after)
+    property translation.irl "{this}.compareTo({0}) >=0"
+    property translation.sql "{this} >= {0}"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean before(ilog.rules.brl.Date before)
+    property translation.irl "{this}.compareTo({0}) < 0"
+    property translation.sql "{this} < {0}"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean beforeOrEquals(ilog.rules.brl.Date before)
+	  property translation.irl "{this}.compareTo({0}) <= 0"
+    property translation.sql "{this} <= {0}"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEE(ilog.rules.brl.Date after, ilog.rules.brl.Date before)
+    property translation.irl "(({this}.compareTo({0})>0 && {this}.compareTo({1})<0) || ({this}.compareTo({1}) >0 && {this}.compareTo({0})<0))"
+    property translation.sql "({this} > {0} AND {this} < {1})"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenIE(ilog.rules.brl.Date after, ilog.rules.brl.Date before)
+    property translation.irl "(({this}.compareTo({0})>=0 && {this}.compareTo({1})<0) || ({this}.compareTo({1})>=0 && {this}.compareTo({0})<0))"
+    property translation.sql "({this} >= {0} AND {this} < {1})"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEI(ilog.rules.brl.Date after, ilog.rules.brl.Date before)
+    property translation.irl "(({this}.compareTo({0})>0 && {this}.compareTo({1})<=0) || ({this}.compareTo({1})>0 && {this}.compareTo({0})<=0))"
+    property translation.sql "({this} > {0} AND {this} <= {1})"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenII(ilog.rules.brl.Date after, ilog.rules.brl.Date before)
+    property translation.irl "(({this}.compareTo({0})>=0 && {this}.compareTo({1})<=0) || ({this}.compareTo({1})>=0 && {this}.compareTo({0})<=0))"
+    property translation.sql "({this} >= {0} AND {this} <= {1})"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtDayTime(ilog.rules.brl.DayOfWeek day, ilog.rules.brl.Time time)
+    property translation.irl "(ilog.rules.brl.IlrDateUtil.getDayOfWeek({this}).equals({0}) && ilog.rules.brl.IlrDateUtil.getTime({this}).equals({1}))"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtMonthYear(ilog.rules.brl.Month month, ilog.rules.brl.Year year)
+    property translation.irl "(ilog.rules.brl.IlrDateUtil.getMonth({this}).equals({0}) && ilog.rules.brl.IlrDateUtil.getYear({this}).equals({1}))"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtDate(ilog.rules.brl.Date date)
+    property translation.irl "ilog.rules.brl.IlrDateUtil.getDate({this}).equals(ilog.rules.brl.IlrDateUtil.getDate({0}))"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtTime(ilog.rules.brl.Time time)
+    property translation.irl "ilog.rules.brl.IlrDateUtil.getTime({this}).equals({0})"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtMonth(ilog.rules.brl.Month month)
+    property translation.irl "ilog.rules.brl.IlrDateUtil.getMonth({this}).equals({0})"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtDayOfWeek(ilog.rules.brl.DayOfWeek dayOfWeek)
+    property translation.irl "ilog.rules.brl.IlrDateUtil.getDayOfWeek({this}).equals({0})"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtYear(ilog.rules.brl.Year year)
+    property translation.irl  "ilog.rules.brl.IlrDateUtil.getYear({this}).equals({0})"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+}
+
+class UniversalDate extends ilog.rules.brl.Date
+    #valueType
+    property valueDescriptor "ilog.rules.brl.value.descriptor.IlrUniversalDateValueDescriptor"
+    property valueEditor "ilog.rules.brl.ui.value.editor.IlrUniversalDateValueEditor"
+    property valueTranslator.irl "ilog.rules.brl.translation.codegen.IlrIRLUniversalDateTranslator"
+    #vocabularyClass
+{
+  UniversalDate(long date);
+  UniversalDate(ilog.rules.brl.Date date);
+  UniversalDate(java.util.Date date)
+  	property "factory.default" "true";
+  int compareTo(ilog.rules.brl.Date o);
+  int compareTo(java.util.Date o);
+}
+
+class UniversalTime extends ilog.rules.brl.Time
+    #valueType
+    property valueDescriptor "ilog.rules.brl.value.descriptor.IlrUniversalTimeValueDescriptor"
+    property valueTranslator.irl "ilog.rules.brl.translation.codegen.IlrIRLUniversalDateTranslator"
+    property valueFormatter "{0,time,long}"
+    #vocabularyClass
+{
+  UniversalTime(long date);
+  UniversalTime(ilog.rules.brl.Time time);
+  UniversalTime(java.util.Date date)
+  	property "factory.default" "true";
+  int compareTo(ilog.rules.brl.Time o);
+  int compareTo(java.util.Date o);
+}
+
+class SimpleDate extends ilog.rules.brl.Date
+    #valueType
+    property valueDescriptor "ilog.rules.brl.value.descriptor.IlrShortDateValueDescriptor"
+    property valueEditor "ilog.rules.brl.ui.value.editor.IlrShortDateValueEditor"
+    property valueTranslator.irl "ilog.rules.brl.translation.codegen.IlrIRLDateTranslator"
+    property valueFormatter "{0,date,short}"
+    property dtCheckerDescriptor "ilog.rules.dt.model.services.check.descriptor.IlrDTSimpleDateCheckerDescriptor"
+    #vocabularyClass
+{
+  SimpleDate(long date);
+  SimpleDate(ilog.rules.brl.SimpleDate date);
+  SimpleDate(java.util.Date date)
+  	property "factory.default" "true";
+  int compareTo(ilog.rules.brl.SimpleDate o);
+  int compareTo(java.util.Date o);
+}
+
+class DayOfWeek
+    #valueType
+    #vocabularyClass
+    property alias "comparable"
+{
+    static final ilog.rules.brl.DayOfWeek Sunday
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.SUNDAY)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.DayOfWeek Monday
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.MONDAY)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.DayOfWeek Tuesday
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.TUESDAY)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.DayOfWeek Wednesday
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.WEDNESDAY)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.DayOfWeek Thursday
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.THURSDAY)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.DayOfWeek Friday
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.FRIDAY)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.DayOfWeek Saturday
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.SATURDAY)"
+      property rve.keepInModel "true";
+
+  DayOfWeek(long date);
+  DayOfWeek(ilog.rules.brl.DayOfWeek dow);
+  DayOfWeek(java.util.Date date)
+  	property "factory.default" "true";
+  int compareTo(java.util.Date o);
+  int compareTo(ilog.rules.brl.DayOfWeek o);
+
+  boolean is(ilog.rules.brl.Object arg)
+    property translation.irl "{this}.compareTo({0}) == 0";
+  boolean isNot(ilog.rules.brl.Object arg)
+    property translation.irl "{this}.compareTo({0}) != 0";
+  boolean after(ilog.rules.brl.DayOfWeek after)
+    property translation.irl "{this}.compareTo({0}) > 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean afterOrEquals(ilog.rules.brl.DayOfWeek after)
+    property translation.irl "{this}.compareTo({0}) >= 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean before(ilog.rules.brl.DayOfWeek before)
+    property translation.irl "{this}.compareTo({0}) < 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean beforeOrEquals(ilog.rules.brl.DayOfWeek before)
+    property translation.irl "{this}.compareTo({0}) <= 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEE(ilog.rules.brl.DayOfWeek after, ilog.rules.brl.DayOfWeek before)
+    property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) < 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenIE(ilog.rules.brl.DayOfWeek after, ilog.rules.brl.DayOfWeek before)
+    property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) < 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEI(ilog.rules.brl.DayOfWeek after, ilog.rules.brl.DayOfWeek before)
+    property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) <= 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenII(ilog.rules.brl.DayOfWeek after, ilog.rules.brl.DayOfWeek before)
+    property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) <= 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+
+}
+
+class Month
+        #valueType
+        #vocabularyClass
+        property alias "comparable"
+{
+    static final ilog.rules.brl.Month January
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.JANUARY)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.Month February
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.FEBRUARY)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.Month March
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.MARCH)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.Month April
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.APRIL)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.Month May
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.MAY)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.Month June
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.JUNE)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.Month July
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.JULY)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.Month August
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.AUGUST)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.Month September
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.SEPTEMBER)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.Month October
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.OCTOBER)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.Month November
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.NOVEMBER)"
+      property rve.keepInModel "true";
+    static final ilog.rules.brl.Month December
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.DECEMBER)"
+      property rve.keepInModel "true";
+
+  int compareTo(ilog.rules.brl.Month arg)
+    property propagateArgumentType "true";
+  int compareTo(java.util.Date o);
+  Month(ilog.rules.brl.Month month);
+  Month(long date);
+  Month(java.util.Date date)
+  	property "factory.default" "true";
+
+  boolean is(ilog.rules.brl.Object arg)
+      property translation.irl "{this}.compareTo({0}) == 0";
+  boolean isNot(ilog.rules.brl.Object arg)
+    property translation.irl "{this}.compareTo({0}) != 0";
+  boolean after(ilog.rules.brl.Month after)
+    property translation.irl "{this}.compareTo({0}) > 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean afterOrEquals(ilog.rules.brl.Month after)
+    property translation.irl "{this}.compareTo({0}) >= 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean before(ilog.rules.brl.Month before)
+    property translation.irl "{this}.compareTo({0}) < 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean beforeOrEquals(ilog.rules.brl.Month before)
+    property translation.irl "{this}.compareTo({0}) <= 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEE(ilog.rules.brl.Month after, ilog.rules.brl.Month before)
+    property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) < 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenIE(ilog.rules.brl.Month after, ilog.rules.brl.Month before)
+    property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) < 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEI(ilog.rules.brl.Month after, ilog.rules.brl.Month before)
+    property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) <= 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenII(ilog.rules.brl.Month after, ilog.rules.brl.Month before)
+    property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) <= 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+}
+
+class Year
+    #valueType
+    property alias "integer"
+    property valueDescriptor "ilog.rules.brl.value.descriptor.IlrNumberifiedValueDescriptor"
+    #vocabularyClass
+    property valueFormatter "{0,number,#0}"    
+    property valueTranslator.irl "ilog.rules.brl.translation.codegen.IlrIRLYearTranslator"
+{
+  int compareTo(ilog.rules.brl.Year arg)
+    property propagateArgumentType "true";
+  int compareTo(java.util.Date o);
+  Year(long date);
+  Year(ilog.rules.brl.Year year);
+  Year(java.util.Date date)
+  	property "factory.default" "true";
+
+  boolean is(ilog.rules.brl.Object arg)
+    property translation.irl "{this}.compareTo({0}) == 0";
+  boolean isNot(ilog.rules.brl.Object arg)
+    property translation.irl "{this}.compareTo({0}) != 0";
+  boolean after(ilog.rules.brl.Year after)
+    property translation.irl "{this}.compareTo({0}) > 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean afterOrEquals(ilog.rules.brl.Year after)
+    property translation.irl "{this}.compareTo({0}) >= 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean before(ilog.rules.brl.Year before)
+    property translation.irl "{this}.compareTo({0}) < 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean beforeOrEquals(ilog.rules.brl.Year before)
+    property translation.irl "{this}.compareTo({0}) <= 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEE(ilog.rules.brl.Year after, ilog.rules.brl.Year before)
+    property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) < 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenIE(ilog.rules.brl.Year after, ilog.rules.brl.Year before)
+    property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) < 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEI(ilog.rules.brl.Year after, ilog.rules.brl.Year before)
+    property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) <= 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenII(ilog.rules.brl.Year after, ilog.rules.brl.Year before)
+    property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) <= 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+}
+
+class Time
+    #valueType
+    property valueDescriptor "ilog.rules.brl.value.descriptor.IlrTimeValueDescriptor"
+    #vocabularyClass
+    property valueTranslator.irl "ilog.rules.brl.translation.codegen.IlrIRLDateTranslator"
+    property valueFormatter "{0,time}"
+    property dtCheckerDescriptor "ilog.rules.dt.model.services.check.descriptor.IlrDTTimeCheckerDescriptor"
+    //property commutativeOperators "true"    
+{
+   int compareTo(ilog.rules.brl.Time arg);
+   int compareTo(java.util.Date o);
+   Time(long date);
+   Time(ilog.rules.brl.Time time);
+   Time(java.util.Date date)
+		property "factory.default" "true";
+
+   boolean is(ilog.rules.brl.Object arg)
+     property translation.irl "{this}.compareTo({0}) == 0";
+   boolean isNot(ilog.rules.brl.Object arg)
+     property translation.irl "{this}.compareTo({0}) != 0";
+   boolean after(ilog.rules.brl.Time after)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "{this}.compareTo({0}) > 0"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean afterOrEquals(ilog.rules.brl.Time after)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "{this}.compareTo({0}) >= 0"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean before(ilog.rules.brl.Time before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "{this}.compareTo({0}) < 0"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean beforeOrEquals(ilog.rules.brl.Time before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "{this}.compareTo({0}) <= 0"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean isBetweenEE(ilog.rules.brl.Time after, ilog.rules.brl.Time before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) < 0)"
+     property noTruncation "true"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean isBetweenIE(ilog.rules.brl.Time after, ilog.rules.brl.Time before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) < 0)"
+     property noTruncation "true"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean isBetweenEI(ilog.rules.brl.Time after, ilog.rules.brl.Time before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) <= 0)"
+     property noTruncation "true"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean isBetweenII(ilog.rules.brl.Time after, ilog.rules.brl.Time before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) <= 0)"
+     property noTruncation "true"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+}

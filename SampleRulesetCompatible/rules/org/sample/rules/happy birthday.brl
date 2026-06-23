@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>happy birthday</name>
+  <uuid>e9a15882-d107-4a96-9782-1ea3f9cebec1</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+	set 'birth date' to the birth date of 'the customer' as time.date & time in "Europe/Paris"; 
+	set 'today' to now as time.date & time in "Europe/Paris"; 
+if 
+	'birth date' is in the same calendar month as today and 'birth date' is on the same calendar day as today 
+then 
+	print "Today " + the date of today + " is your birthday, happy birthday !!!" ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

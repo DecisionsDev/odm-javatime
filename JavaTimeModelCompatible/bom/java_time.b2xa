@@ -1,0 +1,126 @@
+<b2x:translation xmlns:b2x="http://schemas.ilog.com/JRules/1.3/Translation"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.ilog.com/JRules/1.3/Translation ilog/rules/schemas/1_3/b2x.xsd">
+     <lang>ARL</lang>
+    <id>c741c76b-c750-4ee4-87ae-74514a267234</id>
+  <class>
+    <businessName>java.time.ZonedDateTime</businessName>
+    <executionName>java.time.ZonedDateTime</executionName>
+    <extenderName>com.ibm.ia.rules.model.extender8.TimePoint8Extender</extenderName>
+  </class>
+
+  <class>
+    <businessName>com.ibm.ia.StringProvider</businessName>
+    <executionName>java.lang.Object</executionName>
+    <extenderName>com.ibm.ia.rules.model.extender.StringProviderExtender</extenderName>
+  </class>
+
+  <class>
+    <businessName>com.ibm.ia.CalendarDuration</businessName>
+    <executionName>com.ibm.ia.time.CalendarDuration</executionName>
+    <extenderName>com.ibm.ia.rules.model.extender.CalendarDurationExtender</extenderName>
+  </class>
+
+  <class>
+    <businessName>com.ibm.odm.time.UniversalDate</businessName>
+    <executionName>java.time.ZonedDateTime</executionName>
+    <extenderName>com.ibm.ia.rules.model.extender8.TimePoint8Extender</extenderName>
+  </class>
+
+  <class>
+    <businessName>java.time.temporal.TemporalUnit</businessName>
+    <executionName>java.time.temporal.TemporalUnit</executionName>
+  </class>
+
+  <class>
+    <businessName>com.ibm.odm.time.SimpleDate</businessName>
+    <executionName>java.time.LocalDate</executionName>
+    <extenderName>com.ibm.ia.rules.model.extender.LocalDateExtender</extenderName>
+    <method>
+        <name>com.ibm.odm.time.SimpleDate</name>
+        <parameter type="long"/>
+        <body language="arl"><![CDATA[
+        java.util.Calendar calendar = java.util.Calendar.getInstance(java.util.TimeZone.getTimeZone("UTC"));
+        calendar.clear();
+        calendar.setTimeInMillis(value);
+        return java.time.LocalDate.of(
+            calendar.get(java.util.Calendar.YEAR), 
+            calendar.get(java.util.Calendar.MONTH) + 1, 
+            calendar.get(java.util.Calendar.DAY_OF_MONTH));
+        ]]></body>
+    </method>
+  </class>
+
+  <class>
+    <businessName>com.ibm.odm.time.Date</businessName>
+    <executionName>java.time.ZonedDateTime</executionName>
+    <extenderName>com.ibm.ia.rules.model.extender8.TimePoint8Extender</extenderName>
+    <method>
+        <name>com.ibm.odm.time.Date</name>
+        <parameter type="long"/>
+        <body language="arl"><![CDATA[
+        java.util.Calendar calendar = java.util.Calendar.getInstance(java.util.TimeZone.getTimeZone("UTC"));
+        calendar.clear();
+        calendar.setTimeInMillis(value);
+        return com.ibm.ia.rules.model.extender8.TimePoint8Extender.create(
+            calendar.get(java.util.Calendar.YEAR), 
+            calendar.get(java.util.Calendar.MONTH) + 1, 
+            calendar.get(java.util.Calendar.DAY_OF_MONTH),
+            calendar.get(java.util.Calendar.HOUR_OF_DAY),
+            calendar.get(java.util.Calendar.MINUTE),
+            calendar.get(java.util.Calendar.SECOND));
+        ]]></body>
+    </method>
+  </class>
+
+  <class>
+    <businessName>com.ibm.ia.TimePeriod</businessName>
+    <executionName>com.ibm.ia.time.TimePeriod</executionName>
+    <extenderName>com.ibm.ia.rules.model.extender8.TimePeriod8Extender</extenderName>
+  </class>
+
+  <class>
+    <businessName>com.ibm.odm.time.Month</businessName>
+    <executionName>java.time.Month</executionName>
+    <extenderName>com.ibm.ia.rules.model.extender.MonthExtender</extenderName>
+  </class>
+
+  <class>   
+    <businessName>com.ibm.odm.time.Year</businessName>
+    <executionName>java.time.Year</executionName>
+    <extenderName>com.ibm.ia.rules.model.extender.YearExtender</extenderName>
+    <method>
+        <name>com.ibm.odm.time.Year</name>
+        <parameter type="long"/>
+        <body language="arl"><![CDATA[        
+		return java.time.Year.of((int) value);
+        ]]></body>
+    </method>
+  </class>
+
+  <class>
+    <businessName>com.ibm.odm.time.Time</businessName>
+    <executionName>java.time.LocalTime</executionName>
+    <extenderName>com.ibm.ia.rules.model.extender.LocalTimeExtender</extenderName>
+    <method>
+        <name>com.ibm.odm.time.Time</name>
+        <parameter type="long"/>
+        <body language="arl"><![CDATA[
+        return java.time.LocalTime.ofSecondOfDay(value / 1000);
+        ]]></body>
+    </method>
+  </class>
+
+  <class>
+    <businessName>com.ibm.odm.time.UniversalTime</businessName>
+    <executionName>java.time.OffsetTime</executionName>
+    <extenderName>com.ibm.ia.rules.model.extender.OffsetTimeExtender</extenderName>
+  </class>
+
+  <class>
+    <businessName>com.ibm.odm.time.DayOfWeek</businessName>
+    <executionName>java.time.DayOfWeek</executionName>
+    <extenderName>com.ibm.ia.rules.model.extender.DayOfWeekExtender</extenderName>
+  </class>
+
+ </b2x:translation>
+ 

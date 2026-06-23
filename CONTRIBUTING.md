@@ -1,4 +1,4 @@
-# Contributing to a ODMDev project
+# Contributing to a DecisionsDev project
 _Do you have a contribution?  We welcome contributions, but please ensure that you read the following information
 before issuing a pull request.  Also refer back to this document as a checklist before issuing your pull request.
 This will save time for everyone._

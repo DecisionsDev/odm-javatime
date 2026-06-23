@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <!-- Command Definitions -->
+   <extension point="org.eclipse.ui.commands">
+      <command
+            id="com.ibm.odm.javatime.commands.addCompatible"
+            name="Compatible"
+            description="Adds Java Time support with java.util.Date compatibility">
+      </command>
+      <command
+            id="com.ibm.odm.javatime.commands.addStrict"
+            name="Strict"
+            description="Adds pure Java Time support without java.util.Date compatibility">
+      </command>
+   </extension>
+   
+   <!-- Handler Bindings -->
+   <extension point="org.eclipse.ui.handlers">
+      <handler
+            commandId="com.ibm.odm.javatime.commands.addCompatible"
+            class="com.ibm.odm.javatime.handlers.AddCompatibleHandler">
+      </handler>
+      <handler
+            commandId="com.ibm.odm.javatime.commands.addStrict"
+            class="com.ibm.odm.javatime.handlers.AddStrictHandler">
+      </handler>
+   </extension>
+   
+   <!-- Context Menu Contribution - For Rule Project in Rule Project Explorer -->
+   <extension point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="ilog.rules.studio.ui.explorer.nodes.IlrRuleProjectNode"
+            id="com.ibm.odm.javatime.contribution.ruleproject">
+         <menu
+               label="Add Java Time Support"
+               path="additions"
+               id="com.ibm.odm.javatime.menu">
+            <separator name="group1"/>
+         </menu>
+         <action
+               label="Compatible"
+               tooltip="For projects using java.util.Date"
+               class="com.ibm.odm.javatime.actions.AddCompatibleAction"
+               menubarPath="com.ibm.odm.javatime.menu/group1"
+               enablesFor="1"
+               id="com.ibm.odm.javatime.action.compatible">
+         </action>
+         <action
+               label="Strict"
+               tooltip="For projects not using java.util.Date"
+               class="com.ibm.odm.javatime.actions.AddStrictAction"
+               menubarPath="com.ibm.odm.javatime.menu/group1"
+               enablesFor="1"
+               id="com.ibm.odm.javatime.action.strict">
+         </action>
+      </objectContribution>
+      
+      <!-- Context Menu Contribution - For BOM Folder (IFolder) -->
+      <objectContribution
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IFolder"
+            nameFilter="bom"
+            id="com.ibm.odm.javatime.contribution.bomfolder">
+         <menu
+               label="Add Java Time Support"
+               path="additions"
+               id="com.ibm.odm.javatime.menu.bomfolder">
+            <separator name="group1"/>
+         </menu>
+         <action
+               label="Compatible"
+               tooltip="For projects using java.util.Date"
+               class="com.ibm.odm.javatime.actions.AddCompatibleAction"
+               menubarPath="com.ibm.odm.javatime.menu.bomfolder/group1"
+               enablesFor="1"
+               id="com.ibm.odm.javatime.action.bomfolder.compatible">
+         </action>
+         <action
+               label="Strict"
+               tooltip="For projects not using java.util.Date"
+               class="com.ibm.odm.javatime.actions.AddStrictAction"
+               menubarPath="com.ibm.odm.javatime.menu.bomfolder/group1"
+               enablesFor="1"
+               id="com.ibm.odm.javatime.action.bomfolder.strict">
+         </action>
+      </objectContribution>
+   </extension>
+</plugin>
+
+

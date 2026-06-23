@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>regulatory date</name>
+  <uuid>13548b9a-e111-48c6-a6d3-8645f7c08125</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[if now is after 1/1/2002 12:00:00 AM +0200 
+then
+	print "Balance is in Euro" ;
+]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

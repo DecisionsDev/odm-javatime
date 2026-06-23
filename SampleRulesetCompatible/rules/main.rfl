@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.ruleflow:RuleFlow xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.ruleflow="http://ilog.rules.studio/model/ruleflow.ecore">
+  <name>main</name>
+  <uuid>0aa31a62-ccdd-45c8-a539-eeea5736c036</uuid>
+  <locale>en_US</locale>
+  <categories>any</categories>
+  <rfModel>
+<Ruleflow xmlns="http://schemas.ilog.com/Rules/7.0/Ruleflow">
+  <Body>
+    <TaskList>
+      <StartTask Identifier="task_0">
+        <Actions Language="irl"><![CDATA[
+now = new java.util.Date();
+java.util.Calendar calendar = new java.util.GregorianCalendar(1970, java.util.Calendar.FEBRUARY, 11);
+java.util.Date date = calendar.time;
+customer = new org.sample.Customer("Doe", date);
+]]></Actions>
+      </StartTask>
+      <RuleTask ExecutionMode="Fastpath" ExitCriteria="None" Identifier="task_2" Ordering="Default">
+        <RuleList>
+          <Package Name="org.sample.rules"/>
+        </RuleList>
+      </RuleTask>
+      <StopTask Identifier="task_1"/>
+    </TaskList>
+    <NodeList>
+      <TaskNode Identifier="node2" Task="task_0"/>
+      <TaskNode Identifier="node3" Task="task_1"/>
+      <TaskNode Identifier="node4" Task="task_2"/>
+    </NodeList>
+    <TransitionList>
+      <Transition Identifier="link5" Source="node2" Target="node4"/>
+      <Transition Identifier="link6" Source="node4" Target="node3"/>
+    </TransitionList>
+  </Body>
+  <Resources>
+    <ResourceSet Locale="en_US">
+      <Data Name="node3#y">392.0</Data>
+      <Data Name="node4#x">481.0</Data>
+      <Data Name="node2#y">175.0</Data>
+      <Data Name="node3#x">492.0</Data>
+      <Data Name="node2#x">482.0</Data>
+      <Data Name="node4#y">292.0</Data>
+    </ResourceSet>
+  </Resources>
+  <Properties/>
+</Ruleflow>
+</rfModel>
+</ilog.rules.studio.model.ruleflow:RuleFlow>

@@ -1,0 +1,799 @@
+# java_time_fr_FR.voc
+uuid = 704a704d-b0d4-44d6-9406-47c4e1e66dcb
+
+@date#gender = FEMALE
+@date\ &\ heure#gender = FEMALE
+@date\ &\ heure#plural = dates & heures
+@date\ &\ heure\ universelle#gender = FEMALE
+@date\ &\ heure\ universelle#plural = dates & heures universelles
+
+@dur\u00E9e#gender = FEMALE
+@dur\u00E9e\ calendaire#gender = FEMALE
+@dur\u00E9e\ absolue#gender = FEMALE
+@p\u00E9riode#gender = FEMALE
+@p\u00E9riode\ de\ temps#gender = FEMALE
+@d\u00E9but#gender = MALE
+@fin#gender = FEMALE
+@minute#gender = FEMALE
+@minute\ de\ temps#gender = FEMALE
+@minute\ de\ l'heure#gender = FEMALE
+@seconde#gender = FEMALE
+@seconde\ de\ la\ minute#gender = FEMALE
+@heure\ du\ jour#gender = FEMALE
+@heure#gender = FEMALE
+
+@dur\u00E9e\ absolue#plural = dur\u00E9e\s absolues
+@dur\u00E9e\ calendaire#plural = dur\u00E9e\s calendaires
+@ann\u00E9e#gender = FEMALE
+@semaine#gender = FEMALE
+@heure#gender = FEMALE
+
+#
+# com.ibm.ia.StringProvider
+#
+
+# The type com.ibm.ia.StringProvider provides operations for
+# concatenating string representations of objects. The operations are
+# expressed by a plus-symbol and thus do not need any translation. It is
+# thus sufficient to translate the documentation.
+
+com.ibm.ia.StringProvider.concat(java.lang.String,com.ibm.ia.StringProvider)#sentence.navigation = {0} + {1}
+com.ibm.ia.StringProvider.concat(java.lang.String,com.ibm.ia.StringProvider)#sentence.navigation.precedence = 1-1:left:100
+com.ibm.ia.StringProvider.concat(java.lang.String,com.ibm.ia.StringProvider)#documentation = Concat\u00E8ne une cha\u00EEne de caract\u00E8res et la repr\u00E9sentation d'une cha\u00EEne de caract\u00E8res d'un objet.
+com.ibm.ia.StringProvider.concat(com.ibm.ia.StringProvider,java.lang.String)#sentence.navigation = {0} + {1}
+com.ibm.ia.StringProvider.concat(com.ibm.ia.StringProvider,java.lang.String)#sentence.navigation.precedence = 1-1:left:100
+com.ibm.ia.StringProvider.concat(com.ibm.ia.StringProvider,java.lang.String)#documentation = Concat\u00E8ne la repr\u00E9sentation d'une cha\u00EEne de caract\u00E8res d'un objet et une cha\u00EEne de caract\u00E8res.
+
+#
+# com.ibm.ia.CalendarDuration
+#
+
+# Expressions of type com.ibm.ia.CalendarDuration represent durations
+# in calendar units such as years, months, weeks, days, as well as time
+# units, such as hours, minutes, and seconds. Calendar durations
+# correspond to nominal durations in the ISO 8601 standard.
+
+com.ibm.ia.CalendarDuration#label = temps.dur\u00E9e calendaire
+
+# The following two operations determine a time point that proceeds or
+# succeeds a given time point by a given calendar duration. The duration
+# is indicated by the placeholder {this} and the time point is indicated
+# by the placeholder {0}. The placeholder {this} may be filled by any
+# expression of type com.ibm.ia.CalendarDuration such as "1 month 5
+# days 10 hours" and the placeholder {0} may be filled by any expression
+# of type com.ibm.odm.time.Date such as "the start of the trip". This
+# results in expressions such as ""1 month 5 days 10 hours break before
+# the start of the trip".
+
+com.ibm.ia.CalendarDuration.timeBefore(com.ibm.odm.time.Date)#sentence.navigation = {0} - {this}
+com.ibm.ia.CalendarDuration.timeBefore(com.ibm.odm.time.Date)#sentence.navigation.precedence = 1-1:left:100
+com.ibm.ia.CalendarDuration.timeBefore(com.ibm.odm.time.Date)#documentation = D\u00E9termine un point de temps en soustrayant une dur\u00E9e calendaire \u00E0 partir d'un point de temps.
+
+com.ibm.ia.CalendarDuration.timeAfter(com.ibm.odm.time.Date)#sentence.navigation = {0} + {this}
+com.ibm.ia.CalendarDuration.timeAfter(com.ibm.odm.time.Date)#sentence.navigation.precedence = 1-1:left:100
+com.ibm.ia.CalendarDuration.timeAfter(com.ibm.odm.time.Date)#documentation = D\u00E9termine un point de temps en ajoutant une dur\u00E9e calendaire \u00E0 partir d'un point de temps.
+
+# The following two operations determine a time period of a given
+# calendar duration that proceeds or succeeds a given time point, but
+# that does not include this time point. The duration is indicated by
+# the placeholder {this} and the time point is indicated by the
+# placeholder {0}. The placeholder {this} may be filled by any
+# expression of type com.ibm.ia.CalendarDuration such as "1 week" and
+# the placeholder {0} may be filled by any expression of type
+# com.ibm.odm.time.Date such as "the start of the trip". This results in
+# expressions such as "the period of 1 week before the start of the
+# trip". The term {period} is part of the operator name and needs to
+# be translated. The placeholders {this} and {0} must not be
+# translated.
+
+com.ibm.ia.CalendarDuration.periodBefore(com.ibm.odm.time.Date)#sentence.navigation = {p\u00E9riode} {this, PARTITIVE_ARTICLE} se terminant avant {0}
+com.ibm.ia.CalendarDuration.periodBefore(com.ibm.odm.time.Date)#documentation = D\u00E9finit une p\u00E9riode de la dur\u00E9e calendaire pr\u00E9cis\u00E9e qui se termine au point de temps sp\u00E9cifi\u00E9, mais ne comprend pas ce point de temps.
+com.ibm.ia.CalendarDuration.periodAfter(com.ibm.odm.time.Date)#sentence.navigation = {p\u00E9riode} {this, PARTITIVE_ARTICLE} commen\u00E7ant apr\u00E8s {0}
+com.ibm.ia.CalendarDuration.periodAfter(com.ibm.odm.time.Date)#documentation = D\u00E9finit une p\u00E9riode de la dur\u00E9e calendaire sp\u00E9cifi\u00E9e qui commence juste apr\u00E8s le point de temps sp\u00E9cifi\u00E9.
+
+# The following two operations determine a time period of a given
+# calendar duration that proceeds or succeeds a given time point and
+# that include this time point. An example is "the period of 1 day
+# starting at the end of the trip". The term {period} is part of the
+# operator name and needs to be translated. The placeholders {this}
+# and {0} must not be translated.
+
+com.ibm.ia.CalendarDuration.periodEndingAt(com.ibm.odm.time.Date)#sentence.navigation = {p\u00E9riode} {this, PARTITIVE_ARTICLE} se terminant {0}
+com.ibm.ia.CalendarDuration.periodEndingAt(com.ibm.odm.time.Date)#documentation = D\u00E9finit une p\u00E9riode de la dur\u00E9e sp\u00E9cifi\u00E9e qui se termine \u00E0 un point de temps sp\u00E9cifi\u00E9 et comprend ce point de temps.
+com.ibm.ia.CalendarDuration.periodStartingAt(com.ibm.odm.time.Date)#sentence.navigation = {p\u00E9riode} {this, PARTITIVE_ARTICLE} commen\u00E7ant {0}
+com.ibm.ia.CalendarDuration.periodStartingAt(com.ibm.odm.time.Date)#documentation = D\u00E9finit une p\u00E9riode de la dur\u00E9e sp\u00E9cifi\u00E9e qui commence au point de temps sp\u00E9cifi\u00E9.
+
+#
+# com.ibm.odm.time.Date
+#
+
+# Expressions of type com.ibm.odm.time.Date represent time points which
+# are characterized by a time instant and a time zone. An example is
+# June 10, 2015 2:15:30 AM in time zone Pacific/Midway. Its string
+# representation is 2015-06-10T02:15:30-11:00[Pacific/Midway].
+
+com.ibm.odm.time.Date#label = temps.date & heure
+
+com.ibm.odm.time.Date.after(com.ibm.odm.time.Date)#sentence.navigation = {this} est apr\u00E8s {0}
+com.ibm.odm.time.Date.after(com.ibm.odm.time.Date)#documentation = Teste si la premi\u00E8re date est apr\u00E8s la seconde date
+com.ibm.odm.time.Date.after(com.ibm.odm.time.Date)#predicate.format = > {0}
+com.ibm.odm.time.Date.after(com.ibm.odm.time.Date)#predicate.description = >
+com.ibm.odm.time.Date.after(com.ibm.odm.time.Date)#predicate.group = 1
+
+com.ibm.odm.time.Date.afterOrEquals(com.ibm.odm.time.Date)#sentence.navigation = {this} est apr\u00E8s ou \u00E9gal \u00E0 {0}
+com.ibm.odm.time.Date.afterOrEquals(com.ibm.odm.time.Date)#documentation = Teste si la premi\u00E8re date est apr\u00E8s ou \u00E9gale \u00E0 la seconde date
+
+com.ibm.odm.time.Date.before(com.ibm.odm.time.Date)#sentence.navigation = {this} est avant {0}
+com.ibm.odm.time.Date.before(com.ibm.odm.time.Date)#documentation = Teste si la premi\u00E8re date est avant la seconde date
+com.ibm.odm.time.Date.beforeOrEquals(com.ibm.odm.time.Date)#sentence.navigation = {this} est avant ou \u00E9gal \u00E0 {0}
+com.ibm.odm.time.Date.beforeOrEquals(com.ibm.odm.time.Date)#documentation = Teste si la premi\u00E8re date est avant ou \u00E9gale \u00E0 la seconde date
+
+com.ibm.odm.time.Date.isAtDate(com.ibm.odm.time.Date)#sentence.navigation = {this} est \u00E0 la m\u00EAme date que {0}
+com.ibm.odm.time.Date.isAtDate(com.ibm.odm.time.Date)#documentation = Teste si les deux dates tombent le m\u00EAme jour. L'heure n'est pas prise en compte
+com.ibm.odm.time.Date.isAtDayOfWeek(com.ibm.odm.time.DayOfWeek)#sentence.navigation = {this} est {0}
+com.ibm.odm.time.Date.isAtDayOfWeek(com.ibm.odm.time.DayOfWeek)#documentation = Teste si la date tombe le jour sp\u00E9cifi\u00E9
+com.ibm.odm.time.Date.isAtDayTime(com.ibm.odm.time.DayOfWeek,com.ibm.odm.time.Time)#sentence.navigation = {this} est {0} \u00E0 {1}
+com.ibm.odm.time.Date.isAtDayTime(com.ibm.odm.time.DayOfWeek,com.ibm.odm.time.Time)#documentation = Teste si la date tombe le jour et l'heure sp\u00E9cifi\u00E9s
+com.ibm.odm.time.Date.isAtMonth(com.ibm.odm.time.Month)#sentence.navigation = {this} est au m\u00EAme mois que {0}
+com.ibm.odm.time.Date.isAtMonth(com.ibm.odm.time.Month)#documentation = Teste si la date tombe le mois sp\u00E9cifi\u00E9
+com.ibm.odm.time.Date.isAtMonthYear(com.ibm.odm.time.Month,com.ibm.odm.time.Year)#sentence.navigation = {this} est en {0} {1}
+com.ibm.odm.time.Date.isAtMonthYear(com.ibm.odm.time.Month,com.ibm.odm.time.Year)#documentation = Teste si la date tombe le mois et l'ann\u00E9e sp\u00E9cifi\u00E9s
+com.ibm.odm.time.Date.isAtTime(com.ibm.odm.time.Time)#sentence.navigation = {this} est \u00E0 la m\u00EAme heure que {0}
+com.ibm.odm.time.Date.isAtTime(com.ibm.odm.time.Time)#documentation = Teste si la date tombe l'heure sp\u00E9cifi\u00E9e
+com.ibm.odm.time.Date.isOnDate(com.ibm.odm.time.SimpleDate)#sentence.navigation = {this} est le {0}
+com.ibm.odm.time.Date.isOnDate(com.ibm.odm.time.SimpleDate)#documentation = Tests si la date tombe le jour de l'ann\u00E9e sp\u00E9cifi\u00E9s.
+com.ibm.odm.time.Date.isAtYear(com.ibm.odm.time.Year)#sentence.navigation = {this} est en {0}
+com.ibm.odm.time.Date.isAtYear(com.ibm.odm.time.Year)#documentation = Teste si la date tombe l'ann\u00E9e sp\u00E9cifi\u00E9e
+
+com.ibm.odm.time.Date.isBetweenEE(com.ibm.odm.time.Date,com.ibm.odm.time.Date)#sentence.navigation = {this} est apr\u00E8s {0} et avant {1}
+com.ibm.odm.time.Date.isBetweenEE(com.ibm.odm.time.Date,com.ibm.odm.time.Date)#documentation = Teste si la premi\u00E8re date est apr\u00E8s la deuxi\u00E8me date et avant la troisi\u00E8me
+com.ibm.odm.time.Date.isBetweenEE(com.ibm.odm.time.Date,com.ibm.odm.time.Date)#predicate.format = ]{0},{1}[
+com.ibm.odm.time.Date.isBetweenEE(com.ibm.odm.time.Date,com.ibm.odm.time.Date)#predicate.description = ]..[
+com.ibm.odm.time.Date.isBetweenEE(com.ibm.odm.time.Date,com.ibm.odm.time.Date)#predicate.group = 2
+
+com.ibm.odm.time.Date.isBetweenEI(com.ibm.odm.time.Date,com.ibm.odm.time.Date)#sentence.navigation = {this} est apr\u00E8s {0} et \u00E0 ou avant {1}
+com.ibm.odm.time.Date.isBetweenEI(com.ibm.odm.time.Date,com.ibm.odm.time.Date)#documentation = Teste si la premi\u00E8re date est apr\u00E8s la deuxi\u00E8me date et avant ou \u00E9gale \u00E0 la troisi\u00E8me
+com.ibm.odm.time.Date.isBetweenIE(com.ibm.odm.time.Date,com.ibm.odm.time.Date)#sentence.navigation = {this} est \u00E0 ou apr\u00E8s {0} et avant {1}
+com.ibm.odm.time.Date.isBetweenIE(com.ibm.odm.time.Date,com.ibm.odm.time.Date)#documentation = Teste si la premi\u00E8re date est apr\u00E8s ou \u00E9gale \u00E0 la deuxi\u00E8me date et avant la troisi\u00E8me
+com.ibm.odm.time.Date.isBetweenII(com.ibm.odm.time.Date,com.ibm.odm.time.Date)#sentence.navigation = {this} est \u00E0 ou apr\u00E8s {0} et \u00E0 ou avant {1}
+com.ibm.odm.time.Date.isBetweenII(com.ibm.odm.time.Date,com.ibm.odm.time.Date)#documentation = Teste si la premi\u00E8re date est apr\u00E8s ou \u00E9gale \u00E0 la deuxi\u00E8me date et avant ou \u00E9gale \u00E0 la troisi\u00E8me
+
+# A time point is represented by six components, namely the year, the
+# month of year, the day of month, the hour of day, the minute of hour,
+# the second of minute. The following operations are accessing those
+# components of a time point. Furthermore, there is an operation for
+# accessing the time of day and the day of week of a time point. The
+# time point is indicated by the placeholder {this}, which must not be
+# translated and which may be filled by any expression of type
+# com.ibm.odm.time.Date such as "the departure time of the flight". This
+# results in expressions such as "the time of day of the departure time
+# of the flight".
+
+com.ibm.odm.time.Date.getGregorianYear()#sentence.navigation = {ann\u00E9e} {this, PARTITIVE_ARTICLE}
+com.ibm.odm.time.Date.getGregorianYear()#documentation = Retourne l'ann\u00E9e du point de temps sp\u00E9cifi\u00E9.
+com.ibm.odm.time.Date.getMonthOfYear()#sentence.navigation = {mois de l'ann\u00E9e} {this, PARTITIVE_ARTICLE}
+com.ibm.odm.time.Date.getMonthOfYear()#documentation = Retourne le mois, allant de janvier \u00E0 d\u00E9cembre.
+com.ibm.odm.time.Date.getDayOfMonth()#sentence.navigation = {jour du mois} {this, PARTITIVE_ARTICLE}
+com.ibm.odm.time.Date.getDayOfMonth()#documentation = Retourne le jour dans le mois, allant de 1 \u00E0 31.
+com.ibm.odm.time.Date.getDayTime()#sentence.navigation = {horaire} {this, PARTITIVE_ARTICLE}
+com.ibm.odm.time.Date.getDayTime()#documentation = Renvoie l'heure de la journ\u00E9e, allant de 0:00:00 \u00E0 23:59:59.
+com.ibm.odm.time.Date.toLocalDate()#sentence.navigation = {date} {this, PARTITIVE_ARTICLE}
+com.ibm.odm.time.Date.toLocalDate()#documentation = Returns la date dans le calendrier Gregorien.
+com.ibm.odm.time.Date.getDayOfWeek()#sentence.navigation = {jour de la semaine} {this, PARTITIVE_ARTICLE}
+com.ibm.odm.time.Date.getDayOfWeek()#documentation = Renvoie le jour de la semaine, allant du dimanche au samedi.
+com.ibm.odm.time.Date.getHourOfDay()#sentence.navigation = {heure du jour} {this, PARTITIVE_ARTICLE}
+com.ibm.odm.time.Date.getHourOfDay()#documentation = Renvoie l'heure de la journ\u00E9e, allant de 0 \u00E0 23.
+com.ibm.odm.time.Date.getMinuteOfHour()#sentence.navigation = {minute de l'heure} {this, PARTITIVE_ARTICLE}
+com.ibm.odm.time.Date.getMinuteOfHour()#documentation = Retourne la minute d'une heure, allant de 0 \u00E0 59.
+com.ibm.odm.time.Date.getSecondOfMinute()#sentence.navigation = {seconde de la minute} {this, PARTITIVE_ARTICLE}
+com.ibm.odm.time.Date.getSecondOfMinute()#documentation = Retourne la seconde d'une minute, allant de 0 \u00E0 59.
+
+# The following operations convert a time point to the local time in
+# another time zone. This time zone is specified by a name or is equal
+# the time zone of another time point. The first time point is
+# indicated by the placeholder {this} which may be filled by any
+# expression of type com.ibm.odm.time.Date such as "the departure time
+# of the flight". The time zone information is indicated by the
+# placeholder {0}, which may be filled by the name of a time zone in
+# the IANA Time Zone Database such as "Pacific/Midway" or by any
+# expression of type com.ibm.odm.time.Date. This results in expressions
+# such as "the local time of the departure time of the flight in
+# "Pacific/Midway"". The term {local} is part of the operator name and
+# needs to be translated. The placeholders {this} and {0} must not be
+# translated.
+
+com.ibm.odm.time.Date.inZone(string)#sentence.navigation = {heure locale} {this, PARTITIVE_ARTICLE} en {0}
+com.ibm.odm.time.Date.inZone(string)#documentation = Convertit le point de temps sur le fuseau horaire sp\u00E9cifi\u00E9. Le fuseau horaire est bas\u00E9 sur la IANA Time Zone Database.
+com.ibm.odm.time.Date.inSameZoneAs(com.ibm.odm.time.Date)#sentence.navigation = {heure locale} {this, PARTITIVE_ARTICLE} dans la zone de {0}
+com.ibm.odm.time.Date.inSameZoneAs(com.ibm.odm.time.Date)#documentation = Convertit le premier point de temps au fuseau horaire du deuxi\u00E8me point de temps.
+
+# The following operation determines whether two time points have the same
+# instant of time. These time points are indicated by the placeholders
+# {this} and {0}, which must not be translated and which may be filled
+# by any expression of type com.ibm.odm.time.Date. This results into
+# expressions such as "the departure time of the flight is at the same
+# time as June 10, 2015 2:15:30 AM UTC-11:00.
+
+com.ibm.odm.time.Date.equalSeconds(com.ibm.odm.time.Date)#sentence.navigation = {this} est en m\u00EAme temps que {0}
+com.ibm.odm.time.Date.equalSeconds(com.ibm.odm.time.Date)#documentation = V\u00E9rifie si le premier point de temps est en m\u00EAme temps que le deuxi\u00E8me point dans le temps.
+
+# The following three operations determine whether a time point is
+# after, before, or during a time period. The time point is indicated by
+# the placeholder {this} which may be filled by any expression of type
+# com.ibm.odm.time.Date and the time period is indicated by the
+# placeholder {0} which may be filled by any expression of type
+# com.ibm.ia.TimePeriod. This results in expressions such as "the
+# check in event is during the period of 2 hours before 30 minutes before
+# the departure time of the flight".
+
+com.ibm.odm.time.Date.after(com.ibm.ia.TimePeriod)#sentence.navigation = {this} est apr\u00E8s {0}
+com.ibm.odm.time.Date.after(com.ibm.ia.TimePeriod)#documentation = V\u00E9rifie si un point de temps est apr\u00E8s une p\u00E9riode de temps.
+com.ibm.odm.time.Date.before(com.ibm.ia.TimePeriod)#sentence.navigation = {this} est avant {0}
+com.ibm.odm.time.Date.before(com.ibm.ia.TimePeriod)#documentation = V\u00E9rifie si un point de temps est avant une p\u00E9riode de temps.
+com.ibm.odm.time.Date.during(com.ibm.ia.TimePeriod)#sentence.navigation = {this} est durant {0}
+com.ibm.odm.time.Date.during(com.ibm.ia.TimePeriod)#documentation = V\u00E9rifie si un point de temps est pendant une p\u00E9riode de temps.
+
+# The following seven operations determine whether two time points are in
+# the same calendar period or time-of-day period. The time points are
+# indicated by the placeholders {this} and {0}. These placeholders must
+# not be translated and may be filled by any expression of type
+# com.ibm.odm.time.Date such as "the departure time of the flight" and
+# "the purchase event". This results in expressions such as "the
+# departure time of the flight is on the same calendar day as the
+# purchase event". The placeholder {this} and {0} must not be
+# translated.
+
+com.ibm.odm.time.Date.haveSameCalendarYear(com.ibm.odm.time.Date)#sentence.navigation = {this} est dans la m\u00EAme ann\u00E9e calendaire que {0}
+com.ibm.odm.time.Date.haveSameCalendarYear(com.ibm.odm.time.Date)#documentation = V\u00E9rifie que deux points dans le temps sont dans la m\u00EAme ann\u00E9e calendaire.
+com.ibm.odm.time.Date.haveSameCalendarMonth(com.ibm.odm.time.Date)#sentence.navigation = {this} est dans le m\u00EAme mois calendaire que {0}
+com.ibm.odm.time.Date.haveSameCalendarMonth(com.ibm.odm.time.Date)#documentation = V\u00E9rifie que deux points dans le temps sont dans le m\u00EAme mois calendaire.
+com.ibm.odm.time.Date.haveSameCalendarWeek(com.ibm.odm.time.Date)#sentence.navigation = {this} est dans la m\u00EAme semaine calendaire que {0}
+com.ibm.odm.time.Date.haveSameCalendarWeek(com.ibm.odm.time.Date)#documentation = V\u00E9rifie que deux points dans le temps sont dans la m\u00EAme semaine calendaire.
+com.ibm.odm.time.Date.haveSameCalendarDay(com.ibm.odm.time.Date)#sentence.navigation = {this} est dans le m\u00EAme jour calendaire que {0}
+com.ibm.odm.time.Date.haveSameCalendarDay(com.ibm.odm.time.Date)#documentation = V\u00E9rifie que deux points dans le temps sont dans le m\u00EAme jour calendaire.
+com.ibm.odm.time.Date.haveSameHourPeriod(com.ibm.odm.time.Date)#sentence.navigation = {this} est dans la m\u00EAme heure que {0}
+com.ibm.odm.time.Date.haveSameHourPeriod(com.ibm.odm.time.Date)#documentation = V\u00E9rifie que deux points dans le temps sont dans la m\u00EAme heure.
+com.ibm.odm.time.Date.haveSameMinutePeriod(com.ibm.odm.time.Date)#sentence.navigation = {this} est dans la m\u00EAme minute que {0}
+com.ibm.odm.time.Date.haveSameMinutePeriod(com.ibm.odm.time.Date)#documentation = V\u00E9rifie que deux points dans le temps sont dans la m\u00EAme minute.
+com.ibm.odm.time.Date.haveSameSecondPeriod(com.ibm.odm.time.Date)#sentence.navigation = {this} est dans la m\u00EAme seconde que {0}
+com.ibm.odm.time.Date.haveSameSecondPeriod(com.ibm.odm.time.Date)#documentation = V\u00E9rifie que deux points dans le temps sont dans la m\u00EAme seconde.
+
+# The following four operations determine whether a time point is in the
+# period of a specified duration that proceeds or succeeds another time
+# point. The two time points are indicated by the placeholders {this}
+# and {0} which may be filled by any expression of type
+# com.ibm.odm.time.Date. The duration is indicated by the placeholder
+# {1} which may be filled by any expression of type com.ibm.ia.CalendarDuration.
+# This results in examples such as "the check in event is within 2 hours
+# before 30 minutes before the departure time of the flight". The
+# placeholders must not be translated.
+
+com.ibm.odm.time.Date.isWithinPeriodBefore(com.ibm.ia.CalendarDuration,com.ibm.odm.time.Date)#sentence.navigation = {this} est durant {0} avant {1}
+com.ibm.odm.time.Date.isWithinPeriodBefore(com.ibm.ia.CalendarDuration,com.ibm.odm.time.Date)#documentation = V\u00E9rifie si le premier point de temps est dans la dur\u00E9e avant le deuxi\u00E8me point de temps.
+com.ibm.odm.time.Date.isWithinPeriodAfter(com.ibm.ia.CalendarDuration,com.ibm.odm.time.Date)#sentence.navigation = {this} est durant {0} apr\u00E8s {1}
+com.ibm.odm.time.Date.isWithinPeriodAfter(com.ibm.ia.CalendarDuration,com.ibm.odm.time.Date)#documentation = V\u00E9rifie si le premier point de temps est dans la dur\u00E9e apr\u00E8s le deuxi\u00E8me point de temps.
+
+# The following four operations check whether certain time components of
+# a time point have a specified value. The time point is indicated by
+# the placeholder {this} which may be filled by any expression of type
+# com.ibm.odm.time.Date. The value is indicated by the placeholder {0}
+# which may be filled by a number. This results in expressions such as
+# "the arrival time of the flight is in hour 15". The placeholders must
+# not be translated.
+
+com.ibm.odm.time.Date.isOnDayOfMonth(int)#sentence.navigation = {this} est pendant le jour {0}
+com.ibm.odm.time.Date.isOnDayOfMonth(int)#documentation = V\u00E9rifie si un point de temps est un jour sp\u00E9cifi\u00E9 par un nombre allant de 1 \u00E0 31.
+com.ibm.odm.time.Date.isInHourOfDay(int)#sentence.navigation = {this} est dans l'heure {0}
+com.ibm.odm.time.Date.isInHourOfDay(int)#documentation = V\u00E9rifie si un point de temps est \u00E0 l'heure sp\u00E9cifi\u00E9e allant de 0 \u00E0 23.
+com.ibm.odm.time.Date.isInMinuteOfHour(int)#sentence.navigation = {this} est dans la minute {0}
+com.ibm.odm.time.Date.isInMinuteOfHour(int)#documentation = V\u00E9rifie si un point de temps est dans la minute sp\u00E9cifi\u00E9e allant de 0 \u00E0 59.
+com.ibm.odm.time.Date.isInSecondOfMinute(int)#sentence.navigation = {this} est dans la seconde {0}
+com.ibm.odm.time.Date.isInSecondOfMinute(int)#documentation = V\u00E9rifie si un point de temps est dans la seconde sp\u00E9cifi\u00E9e allant de 0 \u00E0 59.
+
+#
+# com.ibm.odm.time.SimpleDate
+#
+
+# Expressions of type com.ibm.odm.time.SimpleDate represent dates in the
+# Gregorian calender. These dates are represented in terms of a year,
+# a month of the year, and a day of the month. An example is June 10,
+# 2015. Its string representation is 2015-06-10.
+
+com.ibm.odm.time.SimpleDate#label = temps.date
+
+com.ibm.odm.time.SimpleDate.after(com.ibm.odm.time.SimpleDate)#sentence.navigation = {this} est apr\u00E8s {0}
+com.ibm.odm.time.SimpleDate.after(com.ibm.odm.time.SimpleDate)#documentation = Teste si la premi\u00E8re date est apr\u00E8s la seconde date
+com.ibm.odm.time.SimpleDate.afterOrEquals(com.ibm.odm.time.SimpleDate)#sentence.navigation = {this} est apr\u00E8s ou \u00E9gal \u00E0 {0}
+com.ibm.odm.time.SimpleDate.afterOrEquals(com.ibm.odm.time.SimpleDate)#documentation = RTeste si la premi\u00E8re date est apr\u00E8s ou \u00E9gale \u00E0 la seconde date
+
+com.ibm.odm.time.SimpleDate.before(com.ibm.odm.time.SimpleDate)#sentence.navigation = {this} est avant {0}
+com.ibm.odm.time.SimpleDate.before(com.ibm.odm.time.SimpleDate)#documentation = Returns whether the first date is before the second date.
+com.ibm.odm.time.SimpleDate.beforeOrEquals(com.ibm.odm.time.SimpleDate)#sentence.navigation = {this} est avant ou \u00E9gal \u00E0 {0}
+com.ibm.odm.time.SimpleDate.beforeOrEquals(com.ibm.odm.time.SimpleDate)#documentation = Teste si la premi\u00E8re date est avant ou \u00E9gale \u00E0 la seconde date
+
+com.ibm.odm.time.SimpleDate.isAtDayOfWeek(com.ibm.odm.time.DayOfWeek)#sentence.navigation = {this} est au m\u00EAme jour que {0}
+com.ibm.odm.time.SimpleDate.isAtDayOfWeek(com.ibm.odm.time.DayOfWeek)#documentation = Teste si la date tombe le jour sp\u00E9cifi\u00E9
+com.ibm.odm.time.SimpleDate.isAtMonth(com.ibm.odm.time.Month)#sentence.navigation = {this} est au m\u00EAme mois que {0}
+com.ibm.odm.time.SimpleDate.isAtMonth(com.ibm.odm.time.Month)#documentation = Teste si la date tombe le mois sp\u00E9cifi\u00E9
+com.ibm.odm.time.SimpleDate.isAtMonthYear(com.ibm.odm.time.Month,com.ibm.odm.time.Year)#sentence.navigation = {this} est en {0} {1}
+com.ibm.odm.time.SimpleDate.isAtMonthYear(com.ibm.odm.time.Month,com.ibm.odm.time.Year)#documentation = Teste si la date tombe le mois et l'ann\u00E9e sp\u00E9cifi\u00E9s
+com.ibm.odm.time.SimpleDate.isAtYear(com.ibm.odm.time.Year)#sentence.navigation = {this} est en {0}
+com.ibm.odm.time.SimpleDate.isAtYear(com.ibm.odm.time.Year)#documentation = Teste si la date tombe l'ann\u00E9e sp\u00E9cifi\u00E9e
+
+com.ibm.odm.time.SimpleDate.isBetweenEE(com.ibm.odm.time.SimpleDate,com.ibm.odm.time.SimpleDate)#sentence.navigation = {this} est apr\u00E8s {0} et avant {1}
+com.ibm.odm.time.SimpleDate.isBetweenEE(com.ibm.odm.time.SimpleDate,com.ibm.odm.time.SimpleDate)#documentation = Teste si la premi\u00E8re date est apr\u00E8s la deuxi\u00E8me date et avant la troisi\u00E8me
+com.ibm.odm.time.SimpleDate.isBetweenEI(com.ibm.odm.time.SimpleDate,com.ibm.odm.time.SimpleDate)#sentence.navigation = {this} est apr\u00E8s {0} et \u00E0 ou avant {1}
+com.ibm.odm.time.SimpleDate.isBetweenEI(com.ibm.odm.time.SimpleDate,com.ibm.odm.time.SimpleDate)#documentation =  Teste si la premi\u00E8re date est apr\u00E8s la deuxi\u00E8me date et avant ou \u00E9gale \u00E0 la troisi\u00E8me
+com.ibm.odm.time.SimpleDate.isBetweenIE(com.ibm.odm.time.SimpleDate,com.ibm.odm.time.SimpleDate)#sentence.navigation = {this} est \u00E0 ou apr\u00E8s {0} et avant {1}
+com.ibm.odm.time.SimpleDate.isBetweenIE(com.ibm.odm.time.SimpleDate,com.ibm.odm.time.SimpleDate)#documentation = Teste si la premi\u00E8re date est apr\u00E8s ou \u00E9gale \u00E0 la deuxi\u00E8me date et avant la troisi\u00E8me
+com.ibm.odm.time.SimpleDate.isBetweenII(com.ibm.odm.time.SimpleDate,com.ibm.odm.time.SimpleDate)#sentence.navigation = {this} est \u00E0 ou apr\u00E8s {0} et \u00E0 ou avant {1}
+com.ibm.odm.time.SimpleDate.isBetweenII(com.ibm.odm.time.SimpleDate,com.ibm.odm.time.SimpleDate)#documentation = Teste si la premi\u00E8re date est apr\u00E8s ou \u00E9gale \u00E0 la deuxi\u00E8me date et avant ou \u00E9gale \u00E0 la troisi\u00E8me
+
+# A date is represented by three components, namely the year, the
+# month of year, and the day of month. The following operations are
+# accessing those components of a date. Furthermore, there is an
+# operation for accessing the day of week of a date. The date is
+# indicated by the placeholder {this}, which must not be translated
+# and which may be filled by any expression of type
+# com.ibm.odm.time.SimpleDate such as "the birthday of the
+# customer". This results in expressions such as "the day of week of
+# the birthday of the customer".
+
+com.ibm.odm.time.SimpleDate.getGregorianYear()#sentence.navigation = {ann\u00E9e} {this, PARTITIVE_ARTICLE}
+com.ibm.odm.time.SimpleDate.getGregorianYear()#documentation =  Retourne l'ann\u00E9e du point de la date sp\u00E9cifi\u00E9.
+com.ibm.odm.time.SimpleDate.getMonthOfYear()#sentence.navigation = {mois de l'ann\u00E9e} {this, PARTITIVE_ARTICLE}
+com.ibm.odm.time.SimpleDate.getMonthOfYear()#documentation = Retourne le mois, allant de janvier \u00E0 d\u00E9cembre.
+com.ibm.odm.time.SimpleDate.getDayOfMonth()#sentence.navigation = {jour du mois} {this, PARTITIVE_ARTICLE}
+com.ibm.odm.time.SimpleDate.getDayOfMonth()#documentation = Retourne le jour dans le mois, allant de 1 \u00E0 31.
+com.ibm.odm.time.SimpleDate.getDayOfWeek()#sentence.navigation = {jour de la semaine} {this, PARTITIVE_ARTICLE}
+com.ibm.odm.time.SimpleDate.getDayOfWeek()#documentation =  Renvoie le jour de la semaine, allant du dimanche au samedi.
+
+# The following operation checks whether certain time components of
+# a date have a specified value. The date is indicated by
+# the placeholder {this} which may be filled by any expression of type
+# com.ibm.odm.time.SimpleDate. The value is indicated by the placeholder {0}
+# which may be filled by a number. This results in expressions such as
+# "the launch date of the product is on day 5". The placeholders must
+# not be translated.
+
+com.ibm.odm.time.SimpleDate.isOnDayOfMonth(int)#sentence.navigation = {this} est pendant le jour {0}
+com.ibm.odm.time.SimpleDate.isOnDayOfMonth(int)#documentation = V\u00E9rifie si une date est un jour sp\u00E9cifi\u00E9 par un nombre allant de 1 \u00E0 31.
+
+#
+# com.ibm.odm.time.UniversalDate
+#
+
+com.ibm.odm.time.UniversalDate#label = temps.date & heure universelle
+com.ibm.odm.time.UniversalDate#concept.valueFormatter = {0,date,M/d/yyyy h:mm:ss a Z}
+
+#
+# com.ibm.odm.time.UniversalTime
+#
+
+com.ibm.odm.time.UniversalTime#label =
+
+#
+# com.ibm.odm.time.Time
+#
+
+com.ibm.odm.time.Time#label = temps.heure
+com.ibm.odm.time.Time.after(com.ibm.odm.time.Time)#sentence.navigation =  {this} est apr\u00E8s {0}
+com.ibm.odm.time.Time.after(com.ibm.odm.time.Time)#documentation = Teste si la premi\u00E8re heure est apr\u00E8s la deuxi\u00E8me heure
+com.ibm.odm.time.Time.afterOrEquals(com.ibm.odm.time.Time)#sentence.navigation = {this} est apr\u00E8s ou \u00E9gal \u00E0 {0}
+com.ibm.odm.time.Time.afterOrEquals(com.ibm.odm.time.Time)#documentation = Teste si la premi\u00E8re heure est apr\u00E8s ou \u00E9gale \u00E0 la deuxi\u00E8me heure
+com.ibm.odm.time.Time.before(com.ibm.odm.time.Time)#sentence.navigation = {this} est avant {0}
+com.ibm.odm.time.Time.before(com.ibm.odm.time.Time)#documentation = Teste si la premi\u00E8re heure est avant la deuxi\u00E8me heure
+com.ibm.odm.time.Time.beforeOrEquals(com.ibm.odm.time.Time)#sentence.navigation = {this} est avant ou \u00E9gal \u00E0 {0}
+com.ibm.odm.time.Time.beforeOrEquals(com.ibm.odm.time.Time)#documentation = Teste si la premi\u00E8re heure est avant ou \u00E9gale \u00E0 la deuxi\u00E8me heure
+com.ibm.odm.time.Time.isBetweenEE(com.ibm.odm.time.Time,com.ibm.odm.time.Time)#sentence.navigation = {this} est apr\u00E8s {0} et avant {1}
+com.ibm.odm.time.Time.isBetweenEE(com.ibm.odm.time.Time,com.ibm.odm.time.Time)#documentation = Teste si la premi\u00E8re heure est apr\u00E8s la deuxi\u00E8me heure et avant la troisi\u00E8me
+com.ibm.odm.time.Time.isBetweenEI(com.ibm.odm.time.Time,com.ibm.odm.time.Time)#sentence.navigation = {this} est apr\u00E8s {0} et \u00E0 ou avant {1}
+com.ibm.odm.time.Time.isBetweenEI(com.ibm.odm.time.Time,com.ibm.odm.time.Time)#documentation = Teste si la premi\u00E8re heure est apr\u00E8s la deuxi\u00E8me heure et avant ou \u00E9gale \u00E0 la troisi\u00E8me
+com.ibm.odm.time.Time.isBetweenIE(com.ibm.odm.time.Time,com.ibm.odm.time.Time)#sentence.navigation = {this} est \u00E0 ou est apr\u00E8s {0} et est avant {1}
+com.ibm.odm.time.Time.isBetweenIE(com.ibm.odm.time.Time,com.ibm.odm.time.Time)#documentation = Teste si la premi\u00E8re heure est apr\u00E8s ou \u00E9gale \u00E0 la deuxi\u00E8me heure et avant la troisi\u00E8me
+com.ibm.odm.time.Time.isBetweenII(com.ibm.odm.time.Time,com.ibm.odm.time.Time)#sentence.navigation = {this} est \u00E0 ou est apr\u00E8s {0} et est \u00E0 ou avant {1}
+com.ibm.odm.time.Time.isBetweenII(com.ibm.odm.time.Time,com.ibm.odm.time.Time)#documentation = Teste si la premi\u00E8re heure est apr\u00E8s ou \u00E9gale \u00E0 la deuxi\u00E8me heure et avant ou \u00E9gale \u00E0 la troisi\u00E8me
+
+#
+# com.ibm.odm.time.Year
+#
+
+com.ibm.odm.time.Year#label = temps.année
+com.ibm.odm.time.Year.after(com.ibm.odm.time.Year)#sentence.navigation =  {this} est après {0}
+com.ibm.odm.time.Year.after(com.ibm.odm.time.Year)#documentation = Teste si la première année est après la deuxième année
+com.ibm.odm.time.Year.afterOrEquals(com.ibm.odm.time.Year)#sentence.navigation = {this} est après ou égal à {0}
+com.ibm.odm.time.Year.afterOrEquals(com.ibm.odm.time.Year)#documentation = Teste si la première année est après ou égale à la deuxième année
+com.ibm.odm.time.Year.before(com.ibm.odm.time.Year)#sentence.navigation = {this} est avant {0}
+com.ibm.odm.time.Year.before(com.ibm.odm.time.Year)#documentation = Teste si la première année est avant la deuxième année
+com.ibm.odm.time.Year.beforeOrEquals(com.ibm.odm.time.Year)#sentence.navigation = {this} est avant ou égal à {0}
+com.ibm.odm.time.Year.beforeOrEquals(com.ibm.odm.time.Year)#documentation = Teste si la première année est avant ou égale à la deuxième année
+com.ibm.odm.time.Year.isBetweenEE(com.ibm.odm.time.Year,com.ibm.odm.time.Year)#sentence.navigation = {this} est après {0} et avant {1}
+com.ibm.odm.time.Year.isBetweenEE(com.ibm.odm.time.Year,com.ibm.odm.time.Year)#documentation = Teste si la première année est après la deuxième année et avant la troisième
+com.ibm.odm.time.Year.isBetweenEI(com.ibm.odm.time.Year,com.ibm.odm.time.Year)#sentence.navigation = {this} est après {0} et à ou avant {1}
+com.ibm.odm.time.Year.isBetweenEI(com.ibm.odm.time.Year,com.ibm.odm.time.Year)#documentation = Teste si la première année est après la deuxième année et avant ou égale à la troisième
+com.ibm.odm.time.Year.isBetweenIE(com.ibm.odm.time.Year,com.ibm.odm.time.Year)#sentence.navigation = {this} est à ou est après {0} et est avant {1}
+com.ibm.odm.time.Year.isBetweenIE(com.ibm.odm.time.Year,com.ibm.odm.time.Year)#documentation = Teste si la première année est après ou égale à la deuxième année et avant la troisième
+com.ibm.odm.time.Year.isBetweenII(com.ibm.odm.time.Year,com.ibm.odm.time.Year)#sentence.navigation = {this} est à ou est après {0} et est à ou avant {1}
+com.ibm.odm.time.Year.isBetweenII(com.ibm.odm.time.Year,com.ibm.odm.time.Year)#documentation = Teste si la première année est après ou égale à la deuxième année et avant ou égale à la troisième
+
+# com.ibm.odm.time.DayOfWeek
+com.ibm.odm.time.DayOfWeek#label = temps.jour de la semaine
+com.ibm.odm.time.DayOfWeek.FRIDAY#label = temps.vendredi
+com.ibm.odm.time.DayOfWeek.FRIDAY#sortIndex = 5
+com.ibm.odm.time.DayOfWeek.MONDAY#label = temps.lundi
+com.ibm.odm.time.DayOfWeek.MONDAY#sortIndex = 1
+com.ibm.odm.time.DayOfWeek.SATURDAY#label = temps.samedi
+com.ibm.odm.time.DayOfWeek.SATURDAY#sortIndex = 6
+com.ibm.odm.time.DayOfWeek.SUNDAY#label = temps.dimanche
+com.ibm.odm.time.DayOfWeek.SUNDAY#sortIndex = 0
+com.ibm.odm.time.DayOfWeek.THURSDAY#label = temps.jeudi
+com.ibm.odm.time.DayOfWeek.THURSDAY#sortIndex = 4
+com.ibm.odm.time.DayOfWeek.TUESDAY#label = temps.mardi
+com.ibm.odm.time.DayOfWeek.TUESDAY#sortIndex = 2
+com.ibm.odm.time.DayOfWeek.WEDNESDAY#label = temps.mercredi
+com.ibm.odm.time.DayOfWeek.WEDNESDAY#sortIndex = 3
+com.ibm.odm.time.DayOfWeek.after(com.ibm.odm.time.DayOfWeek)#sentence.navigation = {this} est apr\u00E8s {0}
+com.ibm.odm.time.DayOfWeek.after(com.ibm.odm.time.DayOfWeek)#documentation = Teste si le premier jour de la semaine est après le deuxième jour de la semaine
+com.ibm.odm.time.DayOfWeek.afterOrEquals(com.ibm.odm.time.DayOfWeek)#sentence.navigation = {this} est apr\u00E8s ou \u00E9gal \u00E0 {0}
+com.ibm.odm.time.DayOfWeek.afterOrEquals(com.ibm.odm.time.DayOfWeek)#documentation = Teste si le premier jour de la semaine est après ou égal au deuxième jour de la semaine
+com.ibm.odm.time.DayOfWeek.before(com.ibm.odm.time.DayOfWeek)#sentence.navigation = {this} est avant {0}
+com.ibm.odm.time.DayOfWeek.before(com.ibm.odm.time.DayOfWeek)#documentation = Teste si le premier jour de la semaine est avant le deuxième jour de la semaine
+com.ibm.odm.time.DayOfWeek.beforeOrEquals(com.ibm.odm.time.DayOfWeek)#sentence.navigation = {this} est avant ou \u00E9gal \u00E0 {0}
+com.ibm.odm.time.DayOfWeek.beforeOrEquals(com.ibm.odm.time.DayOfWeek)#documentation = Teste si le premier jour de la semaine est avant ou égal au deuxième jour de la semaine
+com.ibm.odm.time.DayOfWeek.isBetweenEE(com.ibm.odm.time.DayOfWeek,com.ibm.odm.time.DayOfWeek)#sentence.navigation = {this} est apr\u00E8s {0} et avant {1}
+com.ibm.odm.time.DayOfWeek.isBetweenEE(com.ibm.odm.time.DayOfWeek,com.ibm.odm.time.DayOfWeek)#documentation = Teste si le première jour de la semaine est après le deuxième jour de la semaine et avant le troisième
+com.ibm.odm.time.DayOfWeek.isBetweenEI(com.ibm.odm.time.DayOfWeek,com.ibm.odm.time.DayOfWeek)#sentence.navigation = {this} est apr\u00E8s {0} et \u00E0 ou avant {1}
+com.ibm.odm.time.DayOfWeek.isBetweenEI(com.ibm.odm.time.DayOfWeek,com.ibm.odm.time.DayOfWeek)#documentation = Teste si le première jour de la semaine est après le deuxième jour de la semaine et avant ou égal au troisième
+com.ibm.odm.time.DayOfWeek.isBetweenIE(com.ibm.odm.time.DayOfWeek,com.ibm.odm.time.DayOfWeek)#sentence.navigation = {this} est \u00E0 ou est apr\u00E8s {0} et est avant {1}
+com.ibm.odm.time.DayOfWeek.isBetweenIE(com.ibm.odm.time.DayOfWeek,com.ibm.odm.time.DayOfWeek)#documentation = Teste si le première jour de la semaine est après ou égal au deuxième jour de la semaine et avant le troisième
+com.ibm.odm.time.DayOfWeek.isBetweenII(com.ibm.odm.time.DayOfWeek,com.ibm.odm.time.DayOfWeek)#sentence.navigation = {this} est \u00E0 ou est apr\u00E8s {0} et est \u00E0 ou avant {1}
+com.ibm.odm.time.DayOfWeek.isBetweenII(com.ibm.odm.time.DayOfWeek,com.ibm.odm.time.DayOfWeek)#documentation = Teste si le première jour de la semaine est après ou égal au deuxième jour de la semaine et avant ou égal au troisième
+
+
+# com.ibm.odm.time.Month
+com.ibm.odm.time.Month#label = temps.mois
+com.ibm.odm.time.Month.APRIL#label = temps.avril
+com.ibm.odm.time.Month.APRIL#sortIndex = 3
+com.ibm.odm.time.Month.AUGUST#label = temps.ao\u00FBt
+com.ibm.odm.time.Month.AUGUST#sortIndex = 7
+com.ibm.odm.time.Month.DECEMBER#label = temps.d\u00E9cembre
+com.ibm.odm.time.Month.DECEMBER#sortIndex = 11
+com.ibm.odm.time.Month.FEBRUARY#label = temps.f\u00E9vrier
+com.ibm.odm.time.Month.FEBRUARY#sortIndex = 1
+com.ibm.odm.time.Month.JANUARY#label = temps.janvier
+com.ibm.odm.time.Month.JANUARY#sortIndex = 0
+com.ibm.odm.time.Month.JULY#label = temps.juillet
+com.ibm.odm.time.Month.JULY#sortIndex = 6
+com.ibm.odm.time.Month.JUNE#label = temps.juin
+com.ibm.odm.time.Month.JUNE#sortIndex = 5
+com.ibm.odm.time.Month.MARCH#label = temps.mars
+com.ibm.odm.time.Month.MARCH#sortIndex = 2
+com.ibm.odm.time.Month.MAY#label = temps.mai
+com.ibm.odm.time.Month.MAY#sortIndex = 4
+com.ibm.odm.time.Month.NOVEMBER#label = temps.novembre
+com.ibm.odm.time.Month.NOVEMBER#sortIndex = 10
+com.ibm.odm.time.Month.OCTOBER#label = temps.octobre
+com.ibm.odm.time.Month.OCTOBER#sortIndex = 9
+com.ibm.odm.time.Month.SEPTEMBER#label = temps.septembre
+com.ibm.odm.time.Month.SEPTEMBER#sortIndex = 8
+com.ibm.odm.time.Month.after(com.ibm.odm.time.Month)#sentence.navigation = {this} est apr\u00E8s {0}
+com.ibm.odm.time.Month.after(com.ibm.odm.time.Month)#documentation = Teste si le premier mois est après le deuxième mois
+com.ibm.odm.time.Month.afterOrEquals(com.ibm.odm.time.Month)#sentence.navigation = {this} est apr\u00E8s ou \u00E9gal \u00E0 {0}
+com.ibm.odm.time.Month.afterOrEquals(com.ibm.odm.time.Month)#documentation = Teste si le premier mois est après ou égal au deuxième mois
+com.ibm.odm.time.Month.before(com.ibm.odm.time.Month)#sentence.navigation = {this} est avant {0}
+com.ibm.odm.time.Month.before(com.ibm.odm.time.Month)#documentation = Teste si le premier mois est avant le deuxième mois
+com.ibm.odm.time.Month.beforeOrEquals(com.ibm.odm.time.Month)#sentence.navigation = {this} est avant ou \u00E9gal \u00E0 {0}
+com.ibm.odm.time.Month.beforeOrEquals(com.ibm.odm.time.Month)#documentation = Teste si le premier mois est avant ou égal au deuxième mois
+com.ibm.odm.time.Month.isBetweenEE(com.ibm.odm.time.Month,com.ibm.odm.time.Month)#sentence.navigation = {this} est apr\u00E8s {0} et avant {1}
+com.ibm.odm.time.Month.isBetweenEE(com.ibm.odm.time.Month,com.ibm.odm.time.Month)#documentation = Teste si le première mois est après le deuxième mois et avant le troisième
+com.ibm.odm.time.Month.isBetweenEI(com.ibm.odm.time.Month,com.ibm.odm.time.Month)#sentence.navigation = {this} est apr\u00E8s {0} et \u00E0 ou avant {1}
+com.ibm.odm.time.Month.isBetweenEI(com.ibm.odm.time.Month,com.ibm.odm.time.Month)#documentation = Teste si le première mois est après le deuxième mois et avant ou égal au troisième
+com.ibm.odm.time.Month.isBetweenIE(com.ibm.odm.time.Month,com.ibm.odm.time.Month)#sentence.navigation = {this} est \u00E0 ou est apr\u00E8s {0} et est avant {1}
+com.ibm.odm.time.Month.isBetweenIE(com.ibm.odm.time.Month,com.ibm.odm.time.Month)#documentation = Teste si le première mois est après ou égal au deuxième mois et avant le troisième
+com.ibm.odm.time.Month.isBetweenII(com.ibm.odm.time.Month,com.ibm.odm.time.Month)#sentence.navigation = {this} est \u00E0 ou est apr\u00E8s {0} et est \u00E0 ou avant {1}
+com.ibm.odm.time.Month.isBetweenII(com.ibm.odm.time.Month,com.ibm.odm.time.Month)#documentation = Teste si le première mois est après ou égal au deuxième mois et avant ou égal au troisième
+
+
+#
+# com.ibm.ia.TimePeriod
+#
+
+# A time period is defined by a start time and an end time and includes
+# all time points that are later than or at the same instant as the
+# start time and earlier than the end time. Particular examples for time
+# periods are the calendar year 2015, the calendar month June 2015, and
+# the calendar day June 10, 2015.
+
+com.ibm.ia.TimePeriod#label = temps.p\u00E9riode de temps
+
+# The following operation creates a time period for the given start and
+# end time. These time points are indicated by the placeholders {0} and
+# {1}, which must not be translated and which may be filled by any
+# expression of type com.ibm.odm.time.Date. This results in examples
+# such as "the period between the departure time of the flight and the
+# arrival time of the flight". The term {period} is part of the
+# operator name and needs to be translated.
+
+com.ibm.ia.TimePeriod.create(com.ibm.odm.time.Date,com.ibm.odm.time.Date)#sentence.navigation = {p\u00E9riode} entre {0} et {1}
+com.ibm.ia.TimePeriod.create(com.ibm.odm.time.Date,com.ibm.odm.time.Date)#documentation = D\u00E9finit une p\u00E9riode de temps pour laquelle l'heure de d\u00E9but et l'heure de fin sont sp\u00E9cifi\u00E9es.
+
+# The following four operations return the calendar year, the calendar
+# month, the calendar week, and the calendar day that contain a given
+# time point. The time point is indicated by the placeholder {0} which
+# must not be translated and which may be filled by any expression of
+# type com.ibm.odm.time.Date. The result is an expression of type
+# com.ibm.ia.TimePeriod such as "the calendar day of the departure
+# time of the flight".
+
+com.ibm.ia.TimePeriod.asYear(com.ibm.odm.time.Date)#sentence.navigation = l'ann\u00E9e calendaire {0, PARTITIVE_ARTICLE}
+com.ibm.ia.TimePeriod.asYear(com.ibm.odm.time.Date)#documentation = Renvoie l'ann\u00E9e calendaire qui contient le point de temps sp\u00E9cifi\u00E9.
+com.ibm.ia.TimePeriod.asMonth(com.ibm.odm.time.Date)#sentence.navigation = le mois calendaire {0, PARTITIVE_ARTICLE}
+com.ibm.ia.TimePeriod.asMonth(com.ibm.odm.time.Date)#documentation = Renvoie le mois calendaire qui contient le point de temps sp\u00E9cifi\u00E9.
+com.ibm.ia.TimePeriod.asWeek(com.ibm.odm.time.Date)#sentence.navigation = la semaine calendaire {0, PARTITIVE_ARTICLE}
+com.ibm.ia.TimePeriod.asWeek(com.ibm.odm.time.Date)#documentation = Renvoie la semaine calendaire qui contient le point de temps sp\u00E9cifi\u00E9.
+com.ibm.ia.TimePeriod.asDay(com.ibm.odm.time.Date)#sentence.navigation = le jour calendaire {0, PARTITIVE_ARTICLE}
+com.ibm.ia.TimePeriod.asDay(com.ibm.odm.time.Date)#documentation = Renvoie le jour calendaire qui contient le point de temps sp\u00E9cifi\u00E9.
+
+# The following operations return the time periods that contain a given
+# time point and that correspond to an hour, a minute, or a second
+# during the time of day.  The time point is indicated by the
+# placeholder {0} which must not be translated and which may be filled
+# by any expression of type com.ibm.odm.time.Date. The result is an
+# expression of type com.ibm.ia.TimePeriod such as "the hour of the
+# departure time of the flight".
+
+com.ibm.ia.TimePeriod.asHour(com.ibm.odm.time.Date)#sentence.navigation = {heure} {0, PARTITIVE_ARTICLE}
+com.ibm.ia.TimePeriod.asHour(com.ibm.odm.time.Date)#documentation = Renvoie l'heure qui contient le point de temps sp\u00E9cifi\u00E9.
+com.ibm.ia.TimePeriod.asMinute(com.ibm.odm.time.Date)#sentence.navigation = {minute} {0, PARTITIVE_ARTICLE}
+com.ibm.ia.TimePeriod.asMinute(com.ibm.odm.time.Date)#documentation = Renvoie la minute qui contient le point de temps sp\u00E9cifi\u00E9.
+com.ibm.ia.TimePeriod.asSecond(com.ibm.odm.time.Date)#sentence.navigation = {seconde} {0, PARTITIVE_ARTICLE}
+com.ibm.ia.TimePeriod.asSecond(com.ibm.odm.time.Date)#documentation = Renvoie la seconde qui contient le point de temps sp\u00E9cifi\u00E9.
+
+# The following operations access the start and the end times of a
+# time period. The time period is indicated by the placeholder {this},
+# which must not be translated and which may be filled by any
+# expression of type com.ibm.ia.TimePeriod. The result is an
+# expression of type com.ibm.odm.time.Date such as "the start time of
+# the trip period". The terms {start} and {end} are parts of the
+# operator names and must be translated.
+
+com.ibm.ia.TimePeriod.getStartTime()#sentence.navigation = {d\u00E9but} {this, PARTITIVE_ARTICLE}
+com.ibm.ia.TimePeriod.getStartTime()#documentation = Renvoie la date de d\u00E9but de la p\u00E9riode de temps.
+com.ibm.ia.TimePeriod.getEndTime()#sentence.navigation =  {fin} {this, PARTITIVE_ARTICLE}
+com.ibm.ia.TimePeriod.getEndTime()#documentation =  Renvoie la date de fin de la p\u00E9riode de temps.
+
+# The following four operations determine a time point that proceeds or
+# succeeds a given time period by a given duration. The time period is
+# indicated by the placeholder {this}, which must not be translated and
+# which may be filled by any expression of type
+# com.ibm.ia.TimePeriod. The duration is indicated by the placeholder
+# {0} which may be filled by any expression of type com.ibm.ia.CalendarDuration.
+# This results in expressions of type com.ibm.odm.time.Date such as "30
+# minutes after the meeting period".
+
+#\u00A0com.ibm.ia.TimePeriod.timeBefore(com.ibm.ia.CalendarDuration)#sentence.navigation = {0} avant {this}
+#\u00A0com.ibm.ia.TimePeriod.timeBefore(com.ibm.ia.CalendarDuration)#documentation = D\u00E9termine un point de temps en soustrayant une dur\u00E9e calendaire \u00E0 partir du d\u00E9but de la p\u00E9riode de temps.
+#\u00A0com.ibm.ia.TimePeriod.timeAfter(com.ibm.ia.CalendarDuration)#sentence.navigation = {0} apr\u00E8s {this}
+#\u00A0com.ibm.ia.TimePeriod.timeAfter(com.ibm.ia.CalendarDuration)#documentation = D\u00E9termine un point de temps en ajoutant une dur\u00E9e calendaire \u00E0 partir du d\u00E9but de la p\u00E9riode de temps.
+
+# The following four operations determine a time period of a given
+# duration that proceeds or succeeds another time period.  The time
+# period is indicated by the placeholder {this}, which must not be
+# translated and which may be filled by any expression of type
+# com.ibm.ia.TimePeriod. The duration is indicated by the placeholder
+# {0} which may be filled by any expression of type com.ibm.ia.CalendarDuration.
+# This results in expressions of type com.ibm.ia.TimePeriod such as "the
+# period of 30 minutes after the meeting period". The term {period} is
+# part of the opeartor name and needs to be translated.
+
+com.ibm.ia.TimePeriod.periodBefore(com.ibm.ia.CalendarDuration)#sentence.navigation = {p\u00E9riode} {0, PARTITIVE_ARTICLE} avant {this}
+com.ibm.ia.TimePeriod.periodBefore(com.ibm.ia.CalendarDuration)#documentation = D\u00E9finit une p\u00E9riode de temps avec la dur\u00E9e calendaire sp\u00E9cifi\u00E9e qui se termine au d\u00E9but d'une autre p\u00E9riode de temps.
+com.ibm.ia.TimePeriod.periodAfter(com.ibm.ia.CalendarDuration)#sentence.navigation = {p\u00E9riode} {0, PARTITIVE_ARTICLE} apr\u00E8s {this}
+com.ibm.ia.TimePeriod.periodAfter(com.ibm.ia.CalendarDuration)#documentation = D\u00E9finit une p\u00E9riode de temps avec la dur\u00E9e calendaire sp\u00E9cifi\u00E9e qui commence \u00E0 la fin d'une autre p\u00E9riode de temps.
+
+# The following five operations determine whether a time period is
+# after, before, includes, starts at or ends at a time point. The time
+# period is indicated by the placeholder {this} which may be filled by
+# any expression of type com.ibm.ia.TimePeriod and the time point is
+# indicated by the placeholder {0} which may be filled by any expression
+# of type com.ibm.odm.time.Date. This results in expressions such as
+# "the trip period includes the purchase event".
+
+com.ibm.ia.TimePeriod.after(com.ibm.odm.time.Date)#sentence.navigation = {this} est apr\u00E8s {0}
+com.ibm.ia.TimePeriod.after(com.ibm.odm.time.Date)#documentation = V\u00E9rifie si la p\u00E9riode de temps est apr\u00E8s le point de temps sp\u00E9cifi\u00E9.
+com.ibm.ia.TimePeriod.before(com.ibm.odm.time.Date)#sentence.navigation = {this} est avant {0}
+com.ibm.ia.TimePeriod.before(com.ibm.odm.time.Date)#documentation = V\u00E9rifie si la p\u00E9riode de temps est avant le point de temps sp\u00E9cifi\u00E9.
+com.ibm.ia.TimePeriod.contains(com.ibm.odm.time.Date)#sentence.navigation = {this} inclut {0}
+com.ibm.ia.TimePeriod.contains(com.ibm.odm.time.Date)#documentation = V\u00E9rifie si la p\u00E9riode de temps inclut le point de temps sp\u00E9cifi\u00E9.
+com.ibm.ia.TimePeriod.startsAt(com.ibm.odm.time.Date)#sentence.navigation = {this} commence au m\u00EAme moment que {0}
+com.ibm.ia.TimePeriod.startsAt(com.ibm.odm.time.Date)#documentation = V\u00E9rifie si la p\u00E9riode de temps d\u00E9marre au point de temps sp\u00E9cifi\u00E9.
+com.ibm.ia.TimePeriod.endsAt(com.ibm.odm.time.Date)#sentence.navigation = {this} se termine au m\u00EAme moment que {0}
+com.ibm.ia.TimePeriod.endsAt(com.ibm.odm.time.Date)#documentation = V\u00E9rifie si la p\u00E9riode de temps se termine au point de temps sp\u00E9cifi\u00E9.
+
+# The following operation determines whether two time periods start and
+# end at the same instants of time. These time periods are indicated by
+# the placeholders {this} and {0}, which must not be translated and
+# which may be filled by any expression of type
+# com.ibm.ia.TimePeriod. This results into expressions such as "the
+# meeting period is during the same time as the period of 2 hours after
+# June 6, 2015 12:00:00 PM".
+
+com.ibm.ia.TimePeriod.equalSeconds(com.ibm.ia.TimePeriod)#sentence.navigation = {this} est pendant le m\u00EAme temps que {0}
+com.ibm.ia.TimePeriod.equalSeconds(com.ibm.ia.TimePeriod)#documentation = V\u00E9rifie si deux p\u00E9riodes de temps d\u00E9marrent et se terminent en m\u00EAme temps.
+
+# The following three operations determine whether a time period is
+# after, before, or overlaps with another time period. These time
+# periods are indicated by the placeholders {this} and {0}, which must
+# not be translated and which may be filled by any expression of type
+# com.ibm.ia.TimePeriod. This results into expressions such as "the
+# meeting period overlaps with the education session".
+
+com.ibm.ia.TimePeriod.after(com.ibm.ia.TimePeriod)#sentence.navigation = {this} est apr\u00E8s {0}
+com.ibm.ia.TimePeriod.after(com.ibm.ia.TimePeriod)#documentation = V\u00E9rifie si la p\u00E9riode de temps est apr\u00E8s la fin de l'autre p\u00E9riode de temps.
+com.ibm.ia.TimePeriod.before(com.ibm.ia.TimePeriod)#sentence.navigation = {this} est avant {0}
+com.ibm.ia.TimePeriod.before(com.ibm.ia.TimePeriod)#documentation = V\u00E9rifie si la p\u00E9riode de temps est avant le d\u00E9but de l'autre p\u00E9riode de temps.
+com.ibm.ia.TimePeriod.overlaps(com.ibm.ia.TimePeriod)#sentence.navigation = {this} chevauche {0}
+com.ibm.ia.TimePeriod.overlaps(com.ibm.ia.TimePeriod)#documentation = V\u00E9rifie si la p\u00E9riode chevauche l'autre p\u00E9riode de temps.
+
+# The following four operations determine whether a time period is
+# longer or shorter than a calendar duration. The time period is
+# indicated by the placeholder {this} which may be filled by any
+# expression of type com.ibm.ia.TimePeriod. The calendar duration is
+# indicated by the placeholder {0} which may be filled by any expression
+# of type com.ibm.ia.CalendarDuration. This results into expressions
+# such as "the trip period is longer than 2 weeks".  The placeholders
+# must not be translated.
+
+com.ibm.ia.TimePeriod.longer(com.ibm.ia.CalendarDuration)#sentence.navigation = {this} est plus long(ue) que {0}
+com.ibm.ia.TimePeriod.longer(com.ibm.ia.CalendarDuration)#documentation = V\u00E9rifie si la p\u00E9riode de temps est plus longue que la dur\u00E9e calendaire sp\u00E9cifi\u00E9e.
+com.ibm.ia.TimePeriod.longerOrEquals(com.ibm.ia.CalendarDuration)#sentence.navigation = {this} est plus long(ue) ou \u00E9gal(e) que {0}
+com.ibm.ia.TimePeriod.longerOrEquals(com.ibm.ia.CalendarDuration)#documentation = V\u00E9rifie si la p\u00E9riode de temps est plus longue ou \u00E9gale \u00E0 la dur\u00E9e calendaire sp\u00E9cifi\u00E9e.
+com.ibm.ia.TimePeriod.shorter(com.ibm.ia.CalendarDuration)#sentence.navigation = {this} est plus court(e) que {0}
+com.ibm.ia.TimePeriod.shorter(com.ibm.ia.CalendarDuration)#documentation = V\u00E9rifie si la p\u00E9riode de temps est plus courte que la dur\u00E9e calendaire sp\u00E9cifi\u00E9e.
+com.ibm.ia.TimePeriod.shorterOrEquals(com.ibm.ia.CalendarDuration)#sentence.navigation = {this} est plus court(e) ou \u00E9gal(e) que {0}
+com.ibm.ia.TimePeriod.shorterOrEquals(com.ibm.ia.CalendarDuration)#documentation = V\u00E9rifie si la p\u00E9riode de temps est plus courte ou \u00E9gale \u00E0 la dur\u00E9e calendaire sp\u00E9cifi\u00E9e.
+
+# The following four operations determine whether a time period is
+# longer or shorter than another time period. These time
+# periods are indicated by the placeholders {this} and {0}, which must
+# not be translated and which may be filled by any expression of type
+# com.ibm.ia.TimePeriod. This results into expressions such as "the
+# meeting period is longer than the education session".
+
+com.ibm.ia.TimePeriod.longer(com.ibm.ia.TimePeriod)#sentence.navigation = {this} est plus long(ue) que {0}
+com.ibm.ia.TimePeriod.longer(com.ibm.ia.TimePeriod)#documentation = V\u00E9rifie si la p\u00E9riode de temps est plus longue que l'autre p\u00E9riode de temps.
+com.ibm.ia.TimePeriod.longerOrEquals(com.ibm.ia.TimePeriod)#sentence.navigation = {this} est plus long(ue) ou \u00E9gal(e) que {0}
+com.ibm.ia.TimePeriod.longerOrEquals(com.ibm.ia.TimePeriod)#documentation = V\u00E9rifie si la p\u00E9riode de temps est plus longue ou \u00E9gale \u00E0 l'autre p\u00E9riode de temps.
+com.ibm.ia.TimePeriod.shorter(com.ibm.ia.TimePeriod)#sentence.navigation = {this} est plus court(e) que {0}
+com.ibm.ia.TimePeriod.shorter(com.ibm.ia.TimePeriod)#documentation = V\u00E9rifie si la p\u00E9riode de temps est plus courte que l'autre p\u00E9riode de temps.
+com.ibm.ia.TimePeriod.shorterOrEquals(com.ibm.ia.TimePeriod)#sentence.navigation = {this} est plus court(e) ou \u00E9gal(e) que {0}
+com.ibm.ia.TimePeriod.shorterOrEquals(com.ibm.ia.TimePeriod)#documentation = V\u00E9rifie si la p\u00E9riode de temps est plus courte ou \u00E9gale \u00E0 l'autre p\u00E9riode de temps.
+
+#
+# com.ibm.rules.runtime.DateUtil
+#
+
+com.ibm.rules.runtime.DateUtil#concept.label=
+
+com.ibm.rules.runtime.DateUtil.yearsBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {nombre d'ann\u00E9es} entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.yearsBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie le nombre d'ann\u00E9es entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.monthsBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {nombre de mois} entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.monthsBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie le nombre de mois entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.weeksBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {nombre de semaines} entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.weeksBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie le nombre de semaines entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.daysBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {nombre de jours} entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.daysBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie le nombre d'ann\u00E9e entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.hoursBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {nombre d'heures} entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.hoursBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie le nombre d'heures entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.minutesBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {nombre de minutes} entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.minutesBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie le nombre de minutes entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.secondsBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {nombre de secondes} entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.secondsBetween(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie le nombre de secondes entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.yearsBetween(java.time.LocalDate,java.time.LocalDate)#sentence.navigation = {nombre d'ann\u00E9es} entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.yearsBetween(java.time.LocalDate,java.time.LocalDate)#documentation = Renvoie le nombre d'ann\u00E9es entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.monthsBetween(java.time.LocalDate,java.time.LocalDate)#sentence.navigation = {nombre de mois} entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.monthsBetween(java.time.LocalDate,java.time.LocalDate)#documentation = Renvoie le nombre de mois entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.weeksBetween(java.time.LocalDate,java.time.LocalDate)#sentence.navigation = {nombre de semaines} entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.weeksBetween(java.time.LocalDate,java.time.LocalDate)#documentation = Renvoie le nombre de semaines entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.daysBetween(java.time.LocalDate,java.time.LocalDate)#sentence.navigation = {nombre de jours} entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.daysBetween(java.time.LocalDate,java.time.LocalDate)#documentation = Renvoie le nombre de jours entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.durationInYears(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {dur\u00E9e} en ann\u00E9es entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.durationInYears(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie la dur\u00E9e qui correspond au nombre d'ann\u00E9es entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.durationInMonths(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {dur\u00E9e} en mois entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.durationInMonths(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie la dur\u00E9e qui correspond au nombre de mois entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.durationInWeeks(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {dur\u00E9e} en semaines entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.durationInWeeks(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie la dur\u00E9e qui correspond au nombre de semaines entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.durationInDays(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {dur\u00E9e} en jours entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.durationInDays(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie la dur\u00E9e qui correspond au nombre de jours entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.durationInHours(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {dur\u00E9e} en heures entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.durationInHours(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie la dur\u00E9e qui correspond au nombre d'heures entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.durationInMinutes(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {dur\u00E9e} en minutes entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.durationInMinutes(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie la dur\u00E9e qui correspond au nombre de minutes entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.durationInSeconds(java.time.ZonedDateTime,java.time.ZonedDateTime)#sentence.navigation = {dur\u00E9e} en secondes entre {0} et {1}
+com.ibm.rules.runtime.DateUtil.durationInSeconds(java.time.ZonedDateTime,java.time.ZonedDateTime)#documentation = Renvoie la dur\u00E9e qui correspond au nombre de secondes entre les deux dates sp\u00E9cifi\u00E9es.
+
+com.ibm.rules.runtime.DateUtil.plus(com.ibm.ia.CalendarDuration,com.ibm.ia.CalendarDuration)#sentence.navigation = {0} + {1}
+com.ibm.rules.runtime.DateUtil.plus(com.ibm.ia.CalendarDuration,com.ibm.ia.CalendarDuration)#sentence.navigation.precedence = 1-1:left:100
+com.ibm.rules.runtime.DateUtil.plus(com.ibm.ia.CalendarDuration,com.ibm.ia.CalendarDuration)#sentence.navigation.excludeFromPrediction = true
+
+com.ibm.rules.runtime.DateUtil.years(long)#sentence.navigation[0] = {0} ann\u00E9es
+com.ibm.rules.runtime.DateUtil.years(long)#sentence.navigation[0].precedence : 1-1:left:200
+com.ibm.rules.runtime.DateUtil.years(long)#sentence.navigation[1] = {0} ann\u00E9e
+com.ibm.rules.runtime.DateUtil.years(long)#sentence.navigation[1].precedence : 1-1:left:200
+
+com.ibm.rules.runtime.DateUtil.months(long)#sentence.navigation[0] = {0} mois
+com.ibm.rules.runtime.DateUtil.months(long)#sentence.navigation[0].precedence : 1-1:left:200
+com.ibm.rules.runtime.DateUtil.months(long)#sentence.navigation[1] = {0} seul mois
+com.ibm.rules.runtime.DateUtil.months(long)#sentence.navigation[1].precedence : 1-2:left:200
+
+com.ibm.rules.runtime.DateUtil.weeks(long)#sentence.navigation[0] = {0} semaines
+com.ibm.rules.runtime.DateUtil.weeks(long)#sentence.navigation[0].precedence : 1-1:left:200
+com.ibm.rules.runtime.DateUtil.weeks(long)#sentence.navigation[1] = {0} semaine
+com.ibm.rules.runtime.DateUtil.weeks(long)#sentence.navigation[1].precedence : 1-1:left:200
+
+com.ibm.rules.runtime.DateUtil.days(long)#sentence.navigation[0] = {0} jours
+com.ibm.rules.runtime.DateUtil.days(long)#sentence.navigation[0].precedence : 1-1:left:200
+com.ibm.rules.runtime.DateUtil.days(long)#sentence.navigation[1] = {0} jour
+com.ibm.rules.runtime.DateUtil.days(long)#sentence.navigation[1].precedence : 1-1:left:200
+
+com.ibm.rules.runtime.DateUtil.hours(long)#sentence.navigation[0] = {0} heures
+com.ibm.rules.runtime.DateUtil.hours(long)#sentence.navigation[0].precedence : 1-1:left:200
+com.ibm.rules.runtime.DateUtil.hours(long)#sentence.navigation[1] = {0} heure
+com.ibm.rules.runtime.DateUtil.hours(long)#sentence.navigation[1].precedence : 1-1:left:200
+
+com.ibm.rules.runtime.DateUtil.minutes(long)#sentence.navigation[0] = {0} minutes
+com.ibm.rules.runtime.DateUtil.minutes(long)#sentence.navigation[0].precedence : 1-1:left:200
+com.ibm.rules.runtime.DateUtil.minutes(long)#sentence.navigation[1] = {0} minute
+com.ibm.rules.runtime.DateUtil.minutes(long)#sentence.navigation[1].precedence : 1-1:left:200
+
+com.ibm.rules.runtime.DateUtil.seconds(long)#sentence.navigation[0] = {0} secondes
+com.ibm.rules.runtime.DateUtil.seconds(long)#sentence.navigation[0].precedence : 1-1:left:200
+com.ibm.rules.runtime.DateUtil.seconds(long)#sentence.navigation[1] = {0} seconde
+com.ibm.rules.runtime.DateUtil.seconds(long)#sentence.navigation[1].precedence : 1-1:left:200
+
+com.ibm.rules.runtime.JavaTimeUtil.toZonedDateTime(ilog.rules.brl.Date,string)#sentence.navigation[0] = {0} comme temps.date & heure en {1}
+com.ibm.rules.runtime.JavaTimeUtil.toZonedDateTime(ilog.rules.brl.Date,string)#sentence.navigation[0].precedence : 1-5:left:200
+com.ibm.rules.runtime.JavaTimeUtil.fromZonedDateTime(com.ibm.odm.time.Date)#sentence.navigation[0] = {0} comme date
+com.ibm.rules.runtime.JavaTimeUtil.fromZonedDateTime(com.ibm.odm.time.Date)#sentence.navigation[0].precedence : 1-2:left:200
+
+com.ibm.rules.runtime.JavaTimeUtil.toLocalDate(ilog.rules.brl.SimpleDate)#sentence.navigation[0] = {0} comme temps.date
+com.ibm.rules.runtime.JavaTimeUtil.toLocalDate(ilog.rules.brl.SimpleDate)#sentence.navigation[0].precedence : 1-2:left:200
+com.ibm.rules.runtime.JavaTimeUtil.fromLocalDate(com.ibm.odm.time.SimpleDate)#sentence.navigation[0] = {0} comme date simple
+com.ibm.rules.runtime.JavaTimeUtil.fromLocalDate(com.ibm.odm.time.SimpleDate)#sentence.navigation[0].precedence : 1-3:left:200
+
+com.ibm.rules.runtime.JavaTimeUtil.toLocalTime(ilog.rules.brl.Time)#sentence.navigation[0] = {0} comme temps.temps
+com.ibm.rules.runtime.JavaTimeUtil.toLocalTime(ilog.rules.brl.Time)#sentence.navigation[0].precedence : 1-2:left:200
+com.ibm.rules.runtime.JavaTimeUtil.fromLocalTime(com.ibm.odm.time.Time)#sentence.navigation[0] = {0} come temps
+com.ibm.rules.runtime.JavaTimeUtil.fromLocalTime(com.ibm.odm.time.Time)#sentence.navigation[0].precedence : 1-2:left:200
+
+com.ibm.rules.runtime.JavaTimeUtil.toDayOfWeek(ilog.rules.brl.DayOfWeek)#sentence.navigation[0] = {0} comme temps.jour de la semaine
+com.ibm.rules.runtime.JavaTimeUtil.toDayOfWeek(ilog.rules.brl.DayOfWeek)#sentence.navigation[0].precedence : 1-5:left:200
+com.ibm.rules.runtime.JavaTimeUtil.fromDayOfWeek(com.ibm.odm.time.DayOfWeek)#sentence.navigation[0] = {0} come jour de la semaine
+com.ibm.rules.runtime.JavaTimeUtil.fromDayOfWeek(com.ibm.odm.time.DayOfWeek)#sentence.navigation[0].precedence : 1-5:left:200
+
+com.ibm.rules.runtime.JavaTimeUtil.toMonth(ilog.rules.brl.Month)#sentence.navigation[0] = {0} comme temps.mois
+com.ibm.rules.runtime.JavaTimeUtil.toMonth(ilog.rules.brl.Month)#sentence.navigation[0].precedence : 1-2:left:200
+com.ibm.rules.runtime.JavaTimeUtil.fromMonth(com.ibm.odm.time.Month)#sentence.navigation[0] = {0} comme mois
+com.ibm.rules.runtime.JavaTimeUtil.fromMonth(com.ibm.odm.time.Month)#sentence.navigation[0].precedence : 1-2:left:200
+
+com.ibm.rules.runtime.JavaTimeUtil.toYear(ilog.rules.brl.Year)#sentence.navigation[0] = {0} as temps.année
+com.ibm.rules.runtime.JavaTimeUtil.toYear(ilog.rules.brl.Year)#sentence.navigation[0].precedence : 1-2:left:200
+com.ibm.rules.runtime.JavaTimeUtil.fromYear(com.ibm.odm.time.Year)#sentence.navigation[0] = {0} come année
+com.ibm.rules.runtime.JavaTimeUtil.fromYear(com.ibm.odm.time.Year)#sentence.navigation[0].precedence : 1-2:left:200

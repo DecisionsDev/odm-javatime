@@ -1,0 +1,16 @@
+
+#loadGetterSetterAsProperties
+property origin "xom:/SampleRulesetCompatible//SampleXomCompatible"
+property uuid "4ec33568-abcb-4a04-9944-c8163960a8d9"
+package org.sample;
+
+
+class Customer
+{
+    java.util.Date birthDate;
+    string name;
+    Customer(string arg1, java.util.Date arg2);
+    Customer()
+                #deprecated;
+}
+

@@ -1,0 +1,938 @@
+
+property uuid "d6fe1406-cfb4-4fdd-bb25-b15862cdee64"
+
+package com.ibm.odm.time;
+
+class Date implements com.ibm.ia.StringProvider
+  property valueType "true"
+  property valueDescriptor "ilog.rules.brl.value.descriptor.javatime.ZonedDateTimeValueDescriptor"
+  property valueTranslator "ilog.rules.brl.translation.codegen.IlrIRLCastValueTranslator#Adapted(ilog.rules.brl.translation.codegen.IlrIRLNumberValueTranslator)"
+  property valueEditor "ilog.rules.brl.ui.value.editor.IlrFullDateValueEditor"
+  property dtCheckerDescriptor "ilog.rules.dt.model.services.check.descriptor.IlrDTDateCheckerDescriptor"
+  property valueFormatter "{0,date} {0,time}"
+  property vocabularyClass "true"
+  property alias "date"
+  property hiddenType "true"
+{
+  Date(long date);
+  Date(com.ibm.odm.time.Date date);
+  Date(java.util.Date date);
+  Date(int year, int month, int day, int hour, int minute, int second);
+  Date(long instantInMillis, int offsetInSeconds);
+
+  public static operator com.ibm.odm.time.Date(long value);
+  public static operator java.time.ZonedDateTime(Date timePoint);
+  public static operator Date(java.time.ZonedDateTime timePoint);
+  public static operator java.util.Date(Date timePoint);
+
+  public static com.ibm.odm.time.Date toDate(java.lang.Object value);
+
+  int compareTo(java.util.Date o);
+  int compareTo(com.ibm.odm.time.Date o);
+
+  java.util.Date toJavaUtilDate();
+
+  // Business members
+  boolean after(com.ibm.odm.time.Date after)
+    property translation.irl "{this}.compareTo({0}) > 0"
+    property translation.sql "{this} > {0}"
+    property propagateAssignableArgumentType "true"
+    property noTruncation "true"
+    property computeBestType "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean afterOrEquals(com.ibm.odm.time.Date after)
+    property translation.irl "{this}.compareTo({0}) >=0"
+    property translation.sql "{this} >= {0}"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean before(com.ibm.odm.time.Date before)
+    property translation.irl "{this}.compareTo({0}) < 0"
+    property translation.sql "{this} < {0}"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean beforeOrEquals(com.ibm.odm.time.Date before)
+	  property translation.irl "{this}.compareTo({0}) <= 0"
+    property translation.sql "{this} <= {0}"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEE(com.ibm.odm.time.Date after, com.ibm.odm.time.Date before)
+    property translation.irl "(({this}.compareTo({0})>0 && {this}.compareTo({1})<0) || ({this}.compareTo({1}) >0 && {this}.compareTo({0})<0))"
+    property translation.sql "({this} > {0} AND {this} < {1})"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenIE(com.ibm.odm.time.Date after, com.ibm.odm.time.Date before)
+    property translation.irl "(({this}.compareTo({0})>=0 && {this}.compareTo({1})<0) || ({this}.compareTo({1})>=0 && {this}.compareTo({0})<0))"
+    property translation.sql "({this} >= {0} AND {this} < {1})"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEI(com.ibm.odm.time.Date after, com.ibm.odm.time.Date before)
+    property translation.irl "(({this}.compareTo({0})>0 && {this}.compareTo({1})<=0) || ({this}.compareTo({1})>0 && {this}.compareTo({0})<=0))"
+    property translation.sql "({this} > {0} AND {this} <= {1})"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenII(com.ibm.odm.time.Date after, com.ibm.odm.time.Date before)
+    property translation.irl "(({this}.compareTo({0})>=0 && {this}.compareTo({1})<=0) || ({this}.compareTo({1})>=0 && {this}.compareTo({0})<=0))"
+    property translation.sql "({this} >= {0} AND {this} <= {1})"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtDayTime(com.ibm.odm.time.DayOfWeek day, com.ibm.odm.time.Time time)
+    property translation.irl "(ilog.rules.brl.IlrDateUtil.getDayOfWeek({this}).equals({0}) && ilog.rules.brl.IlrDateUtil.getTime({this}).equals({1}))"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtMonthYear(com.ibm.odm.time.Month month, com.ibm.odm.time.Year year)
+    property translation.irl "(ilog.rules.brl.IlrDateUtil.getMonth({this}).equals({0}) && com.ibm.odm.time.IlrDateUtil.getYear({this}).equals({1}))"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtDate(com.ibm.odm.time.Date date)
+    property translation.irl "ilog.rules.brl.IlrDateUtil.getDate({this}).equals(ilog.rules.brl.IlrDateUtil.getDate({0}))"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtTime(com.ibm.odm.time.Time time)
+    property translation.irl "ilog.rules.brl.IlrDateUtil.getTime({this}).equals({0})"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isOnDate(com.ibm.odm.time.SimpleDate date);
+  boolean isAtMonth(com.ibm.odm.time.Month month)
+    property translation.irl "ilog.rules.brl.IlrDateUtil.getMonth({this}).equals({0})"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtDayOfWeek(com.ibm.odm.time.DayOfWeek dayOfWeek)
+    property translation.irl "ilog.rules.brl.IlrDateUtil.getDayOfWeek({this}).equals({0})"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtYear(com.ibm.odm.time.Year year)
+    property translation.irl  "ilog.rules.brl.IlrDateUtil.getYear({this}).equals({0})"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+
+  com.ibm.odm.time.Year getGregorianYear();
+  com.ibm.odm.time.Month getMonthOfYear();
+  com.ibm.odm.time.Time getDayTime();
+  com.ibm.odm.time.SimpleDate toLocalDate();
+  com.ibm.odm.time.DayOfWeek getDayOfWeek();
+  int getDayOfMonth()
+    property noTypeConversion "true";
+  int getHourOfDay()
+    property noTypeConversion "true";
+  int getMinuteOfHour()
+    property noTypeConversion "true";
+  int getSecondOfMinute()
+    property noTypeConversion "true";
+
+  com.ibm.odm.time.Date inZone(string timeZoneId)
+	  property "valueInfo[0]" "ilog.rules.brl.value.info.TimeZoneValueInfo";
+  com.ibm.odm.time.Date inSameZoneAs(com.ibm.odm.time.Date referenceTimePoint);
+
+  boolean equalSeconds(com.ibm.odm.time.Date date);
+
+  boolean after(com.ibm.ia.TimePeriod timePeriod);
+  boolean before(com.ibm.ia.TimePeriod timePeriod);
+  boolean during(com.ibm.ia.TimePeriod timePeriod);
+  boolean isAtStart(com.ibm.ia.TimePeriod timePeriod);
+  boolean isAtEnd(com.ibm.ia.TimePeriod timePeriod);
+
+  // derived i2a time operators
+  boolean haveSameCalendarYear(com.ibm.odm.time.Date date);
+  boolean haveSameCalendarMonth(com.ibm.odm.time.Date date);
+  boolean haveSameCalendarWeek(com.ibm.odm.time.Date date);
+  boolean haveSameCalendarDay(com.ibm.odm.time.Date date);
+  boolean haveSameHourPeriod(com.ibm.odm.time.Date date);
+  boolean haveSameMinutePeriod(com.ibm.odm.time.Date date);
+  boolean haveSameSecondPeriod(com.ibm.odm.time.Date date);
+
+  boolean isWithinPeriodBefore(com.ibm.ia.CalendarDuration duration, com.ibm.odm.time.Date timePoint);
+  boolean isWithinPeriodAfter(com.ibm.ia.CalendarDuration duration, com.ibm.odm.time.Date timePoint);
+
+  boolean isOnDayOfMonth(int dayOfMonth);
+  boolean isInHourOfDay(int hourOfDay);
+  boolean isInMinuteOfHour(int minuteOfHour);
+  boolean isInSecondOfMinute(int secondOfMinute);
+}
+
+class SimpleDate implements com.ibm.ia.StringProvider
+    property valueType "true"
+    property valueDescriptor "ilog.rules.brl.value.descriptor.javatime.LocalDateValueDescriptor"
+    property valueTranslator "ilog.rules.brl.translation.codegen.IlrIRLCastValueTranslator#Adapted(ilog.rules.brl.translation.codegen.IlrIRLNumberValueTranslator)"
+    property valueEditor "ilog.rules.brl.ui.value.editor.IlrShortDateValueEditor"
+    property valueFormatter "{0,date}"
+    property dtCheckerDescriptor "ilog.rules.dt.model.services.check.descriptor.IlrDTSimpleDateCheckerDescriptor"
+    property vocabularyClass "true"
+    property alias "date"
+{
+  //SimpleDate(long date);
+  SimpleDate(int year, int month, int day);
+  SimpleDate(com.ibm.odm.time.SimpleDate date);
+  //SimpleDate(java.util.Date date)
+  //	property "factory.default" "true";
+
+  static operator com.ibm.odm.time.SimpleDate(long value);
+  static operator java.util.Date(SimpleDate date);
+
+  int compareTo(com.ibm.odm.time.SimpleDate o);
+  //int compareTo(java.util.Date o);
+
+  // Business members
+  boolean after(com.ibm.odm.time.SimpleDate after)
+    property propagateAssignableArgumentType "true"
+    property noTruncation "true"
+    property computeBestType "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean afterOrEquals(com.ibm.odm.time.SimpleDate after)
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean before(com.ibm.odm.time.SimpleDate before)
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean beforeOrEquals(com.ibm.odm.time.SimpleDate before)
+    property translation.sql "{this} <= {0}"
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEE(com.ibm.odm.time.SimpleDate after, com.ibm.odm.time.SimpleDate before)
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenIE(com.ibm.odm.time.SimpleDate after, com.ibm.odm.time.SimpleDate before)
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEI(com.ibm.odm.time.SimpleDate after, com.ibm.odm.time.SimpleDate before)
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenII(com.ibm.odm.time.SimpleDate after, com.ibm.odm.time.SimpleDate before)
+    property propagateAssignableArgumentType "true"
+    property computeBestType "true"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtMonthYear(com.ibm.odm.time.Month month, com.ibm.odm.time.Year year)
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtMonth(com.ibm.odm.time.Month month)
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtDayOfWeek(com.ibm.odm.time.DayOfWeek dayOfWeek)
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isAtYear(com.ibm.odm.time.Year year)
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  com.ibm.odm.time.Year getGregorianYear();
+  com.ibm.odm.time.Month getMonthOfYear();
+  com.ibm.odm.time.DayOfWeek getDayOfWeek();
+  int getDayOfMonth()
+    property noTypeConversion "true";
+  boolean isOnDayOfMonth(int dayOfMonth);
+}
+
+class Time
+    property valueType "true"
+    property valueDescriptor "ilog.rules.brl.value.descriptor.javatime.LocalTimeValueDescriptor"
+    property valueTranslator "ilog.rules.brl.translation.codegen.IlrIRLCastValueTranslator#Adapted(ilog.rules.brl.translation.codegen.IlrIRLNumberValueTranslator)"
+    //property vocabularyClass "true"
+    property valueFormatter "{0,time}"
+    property dtCheckerDescriptor "ilog.rules.dt.model.services.check.descriptor.IlrDTTimeCheckerDescriptor"
+    //property commutativeOperators "true"
+    property alias "date"
+{
+   int compareTo(com.ibm.odm.time.Time arg);
+   int compareTo(java.util.Date o);
+   Time(long date);
+   Time(com.ibm.odm.time.Time time);
+   Time(java.util.Date date)
+		property "factory.default" "true";
+
+   static operator com.ibm.odm.time.Time(long value);
+   static operator java.util.Date(Time time);
+
+   boolean is(ilog.rules.brl.Object arg)
+     property translation.irl "{this}.compareTo({0}) == 0";
+   boolean isNot(ilog.rules.brl.Object arg)
+     property translation.irl "{this}.compareTo({0}) != 0";
+   boolean after(com.ibm.odm.time.Time after)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "{this}.compareTo({0}) > 0"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean afterOrEquals(com.ibm.odm.time.Time after)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "{this}.compareTo({0}) >= 0"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean before(com.ibm.odm.time.Time before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "{this}.compareTo({0}) < 0"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean beforeOrEquals(com.ibm.odm.time.Time before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "{this}.compareTo({0}) <= 0"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean isBetweenEE(com.ibm.odm.time.Time after, com.ibm.odm.time.Time before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) < 0)"
+     property noTruncation "true"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean isBetweenIE(com.ibm.odm.time.Time after, com.ibm.odm.time.Time before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) < 0)"
+     property noTruncation "true"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean isBetweenEI(com.ibm.odm.time.Time after, com.ibm.odm.time.Time before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) <= 0)"
+     property noTruncation "true"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean isBetweenII(com.ibm.odm.time.Time after, com.ibm.odm.time.Time before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) <= 0)"
+     property noTruncation "true"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+}
+
+class UniversalDate extends com.ibm.odm.time.Date
+    property valueType "true"
+    property valueDescriptor "ilog.rules.brl.value.descriptor.javatime.UniversalZonedDateTimeValueDescriptor"
+    property valueEditor "ilog.rules.brl.ui.value.editor.IlrUniversalDateValueEditor"
+    property vocabularyClass "true"
+    property valueFormatter "{0,date} {0,time,long}"
+{
+  UniversalDate(long date);
+  UniversalDate(com.ibm.odm.time.Date date);
+  int compareTo(com.ibm.odm.time.Date o);
+}
+
+class UniversalTime
+    property valueType "true"
+    //property valueDescriptor "ilog.rules.brl.value.descriptor.IlrUniversalTimeValueDescriptor"
+    //property valueFormatter "{0,time,long}"
+    //property dtCheckerDescriptor "ilog.rules.dt.model.services.check.descriptor.IlrDTTimeCheckerDescriptor"
+    //property vocabularyClass "true"
+{
+  UniversalTime(long date);
+  UniversalTime(com.ibm.odm.time.UniversalTime time);
+  UniversalTime(java.util.Date date)
+  	property "factory.default" "true";
+  int compareTo(com.ibm.odm.time.UniversalTime o);
+  int compareTo(java.util.Date o);
+
+   boolean is(ilog.rules.brl.Object arg)
+     property translation.irl "{this}.compareTo({0}) == 0";
+   boolean isNot(ilog.rules.brl.Object arg)
+     property translation.irl "{this}.compareTo({0}) != 0";
+   boolean after(com.ibm.odm.time.UniversalTime after)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "{this}.compareTo({0}) > 0"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean afterOrEquals(com.ibm.odm.time.UniversalTime after)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "{this}.compareTo({0}) >= 0"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean before(com.ibm.odm.time.UniversalTime before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "{this}.compareTo({0}) < 0"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean beforeOrEquals(com.ibm.odm.time.UniversalTime before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "{this}.compareTo({0}) <= 0"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean isBetweenEE(com.ibm.odm.time.UniversalTime after, com.ibm.odm.time.UniversalTime before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) < 0)"
+     property noTruncation "true"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean isBetweenIE(com.ibm.odm.time.UniversalTime after, com.ibm.odm.time.UniversalTime before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) < 0)"
+     property noTruncation "true"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean isBetweenEI(com.ibm.odm.time.UniversalTime after, com.ibm.odm.time.UniversalTime before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) <= 0)"
+     property noTruncation "true"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+   boolean isBetweenII(com.ibm.odm.time.UniversalTime after, com.ibm.odm.time.UniversalTime before)
+     property propagateAssignableArgumentType "true"
+     property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) <= 0)"
+     property noTruncation "true"
+     property unknownSemantic "true"
+     property rve.keepInModel "true";
+}
+
+class Year
+    #valueType
+    property alias "integer"
+    property valueDescriptor "ilog.rules.brl.value.descriptor.IlrNumberifiedValueDescriptor"
+    #vocabularyClass
+    property valueFormatter "{0,number,#0}"
+    property valueTranslator.irl "ilog.rules.brl.translation.codegen.IlrIRLCastValueTranslator#Adapted(ilog.rules.brl.translation.codegen.IlrIRLNumberValueTranslator)"
+    property alias "date"
+{
+  int compareTo(com.ibm.odm.time.Year arg)
+    property propagateArgumentType "true";
+  int compareTo(java.util.Date o);
+  Year(long date);
+  Year(com.ibm.odm.time.Year year);
+  Year(java.util.Date date)
+  	property "factory.default" "true";
+
+  static operator com.ibm.odm.time.Year(long value);
+  static operator java.util.Date(Year year);
+
+  boolean is(ilog.rules.brl.Object arg)
+    property translation.irl "{this}.compareTo({0}) == 0";
+  boolean isNot(ilog.rules.brl.Object arg)
+    property translation.irl "{this}.compareTo({0}) != 0";
+  boolean after(com.ibm.odm.time.Year after)
+    property translation.irl "{this}.compareTo({0}) > 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean afterOrEquals(com.ibm.odm.time.Year after)
+    property translation.irl "{this}.compareTo({0}) >= 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean before(com.ibm.odm.time.Year before)
+    property translation.irl "{this}.compareTo({0}) < 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean beforeOrEquals(com.ibm.odm.time.Year before)
+    property translation.irl "{this}.compareTo({0}) <= 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEE(com.ibm.odm.time.Year after, com.ibm.odm.time.Year before)
+    property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) < 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenIE(com.ibm.odm.time.Year after, com.ibm.odm.time.Year before)
+    property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) < 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEI(com.ibm.odm.time.Year after, com.ibm.odm.time.Year before)
+    property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) <= 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenII(com.ibm.odm.time.Year after, com.ibm.odm.time.Year before)
+    property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) <= 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+}
+
+class DayOfWeek
+    property valueType "true"
+    property vocabularyClass "true"
+    property alias "date"
+{
+    static final com.ibm.odm.time.DayOfWeek SUNDAY
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.SUNDAY)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.DayOfWeek MONDAY
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.MONDAY)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.DayOfWeek TUESDAY
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.TUESDAY)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.DayOfWeek WEDNESDAY
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.WEDNESDAY)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.DayOfWeek THURSDAY
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.THURSDAY)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.DayOfWeek FRIDAY
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.FRIDAY)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.DayOfWeek SATURDAY
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromDayOfWeek(java.util.Calendar.SATURDAY)"
+      property rve.keepInModel "true";
+
+  DayOfWeek(long date);
+  DayOfWeek(com.ibm.odm.time.DayOfWeek dow);
+  DayOfWeek(java.util.Date date)
+  	property "factory.default" "true";
+  int compareTo(java.util.Date o);
+  int compareTo(com.ibm.odm.time.DayOfWeek o);
+
+  static operator java.util.Date(DayOfWeek dow);
+
+  boolean is(ilog.rules.brl.Object arg)
+    property translation.irl "{this}.compareTo({0}) == 0";
+  boolean isNot(ilog.rules.brl.Object arg)
+    property translation.irl "{this}.compareTo({0}) != 0";
+  boolean after(com.ibm.odm.time.DayOfWeek after)
+    property translation.irl "{this}.compareTo({0}) > 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean afterOrEquals(com.ibm.odm.time.DayOfWeek after)
+    property translation.irl "{this}.compareTo({0}) >= 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean before(com.ibm.odm.time.DayOfWeek before)
+    property translation.irl "{this}.compareTo({0}) < 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean beforeOrEquals(com.ibm.odm.time.DayOfWeek before)
+    property translation.irl "{this}.compareTo({0}) <= 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEE(com.ibm.odm.time.DayOfWeek after, com.ibm.odm.time.DayOfWeek before)
+    property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) < 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenIE(com.ibm.odm.time.DayOfWeek after, com.ibm.odm.time.DayOfWeek before)
+    property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) < 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEI(com.ibm.odm.time.DayOfWeek after, com.ibm.odm.time.DayOfWeek before)
+    property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) <= 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenII(com.ibm.odm.time.DayOfWeek after, com.ibm.odm.time.DayOfWeek before)
+    property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) <= 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+
+}
+
+class Month
+        property valueType "true"
+        property vocabularyClass "true"
+        property alias "date"
+{
+    static final com.ibm.odm.time.Month JANUARY
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.JANUARY)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.Month FEBRUARY
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.FEBRUARY)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.Month MARCH
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.MARCH)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.Month APRIL
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.APRIL)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.Month MAY
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.MAY)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.Month JUNE
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.JUNE)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.Month JULY
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.JULY)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.Month AUGUST
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.AUGUST)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.Month SEPTEMBER
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.SEPTEMBER)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.Month OCTOBER
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.OCTOBER)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.Month NOVEMBER
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.NOVEMBER)"
+      property rve.keepInModel "true";
+    static final com.ibm.odm.time.Month DECEMBER
+      property translation.irl "ilog.rules.brl.IlrDateUtil.getDateFromMonth(java.util.Calendar.DECEMBER)"
+      property rve.keepInModel "true";
+
+  int compareTo(com.ibm.odm.time.Month arg)
+    property propagateArgumentType "true";
+  int compareTo(java.util.Date o);
+  Month(com.ibm.odm.time.Month month);
+  Month(long date);
+  Month(java.util.Date date)
+  	property "factory.default" "true";
+
+  static operator java.util.Date(Month month);
+
+  boolean is(ilog.rules.brl.Object arg)
+      property translation.irl "{this}.compareTo({0}) == 0";
+  boolean isNot(ilog.rules.brl.Object arg)
+    property translation.irl "{this}.compareTo({0}) != 0";
+  boolean after(com.ibm.odm.time.Month after)
+    property translation.irl "{this}.compareTo({0}) > 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean afterOrEquals(com.ibm.odm.time.Month after)
+    property translation.irl "{this}.compareTo({0}) >= 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean before(com.ibm.odm.time.Month before)
+    property translation.irl "{this}.compareTo({0}) < 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean beforeOrEquals(com.ibm.odm.time.Month before)
+    property translation.irl "{this}.compareTo({0}) <= 0"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEE(com.ibm.odm.time.Month after, com.ibm.odm.time.Month before)
+    property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) < 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenIE(com.ibm.odm.time.Month after, com.ibm.odm.time.Month before)
+    property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) < 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenEI(com.ibm.odm.time.Month after, com.ibm.odm.time.Month before)
+    property translation.irl "({this}.compareTo({0}) > 0 && {this}.compareTo({1}) <= 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+  boolean isBetweenII(com.ibm.odm.time.Month after, com.ibm.odm.time.Month before)
+    property translation.irl "({this}.compareTo({0}) >= 0 && {this}.compareTo({1}) <= 0)"
+    property noTruncation "true"
+    property unknownSemantic "true"
+    property rve.keepInModel "true";
+}
+
+package com.ibm.ia;
+
+interface StringProvider
+  property hiddenType "true"
+  property vocabularyClass "true"
+  property excludeFromPrediction "true"
+{
+  static java.lang.String concat(java.lang.String arg0, com.ibm.ia.StringProvider arg1)
+    property excludeFromPrediction "true";
+  static java.lang.String concat(com.ibm.ia.StringProvider arg0, java.lang.String arg1)
+    property excludeFromPrediction "true";
+}
+
+class CalendarDuration implements com.ibm.ia.StringProvider
+	property vocabularyClass "true"
+    property dataio.ignore "true"
+{
+	CalendarDuration(int numberOfYears,
+	                 int numberOfMonths,
+	                 int numberOfWeeks,
+	                 int numberOfDays,
+	                 int numberOfHours,
+	                 int numberOfMinutes,
+	                 int numberOfSeconds);
+
+	int getYears();
+	int getMonths();
+	int getWeeks();
+	int getDays();
+	int getHours();
+	int getMinutes();
+	int getSeconds();
+
+	com.ibm.odm.time.Date timeBefore(com.ibm.odm.time.Date timePoint);
+	com.ibm.odm.time.Date timeAfter(com.ibm.odm.time.Date timePoint);
+	com.ibm.ia.TimePeriod periodBefore(com.ibm.odm.time.Date timePoint);
+	com.ibm.ia.TimePeriod periodAfter(com.ibm.odm.time.Date timePoint);
+	com.ibm.ia.TimePeriod periodEndingAt(com.ibm.odm.time.Date timePoint);
+	com.ibm.ia.TimePeriod periodStartingAt(com.ibm.odm.time.Date timePoint);
+}
+
+class TimePeriod implements com.ibm.ia.StringProvider
+    // property "xsd.fileName" "time.xsd"
+    // property "xsd.support" "true"
+    // property "xsd.targetNamespace" "http://www.ibm.com/ia"
+{
+  TimePeriod(java.time.ZonedDateTime startTime,
+             java.time.ZonedDateTime endTime)
+             property "dataio.default" "true";
+
+  readonly final java.time.ZonedDateTime startTime;
+  readonly final java.time.ZonedDateTime endTime;
+
+  static com.ibm.ia.TimePeriod create(com.ibm.odm.time.Date start, com.ibm.odm.time.Date end);
+
+  static com.ibm.ia.TimePeriod create(int yearNumber)
+  property "semanticAction[0]" "ilog.rules.brl.IlrBRL$CheckValue"
+  property "semanticFilter[0]" "ilog.rules.brl.IlrBRL$ValueFilter";
+  static com.ibm.ia.TimePeriod create(com.ibm.odm.time.Month monthOfYear, int yearNumber)
+    property "semanticAction[0]" "ilog.rules.brl.IlrBRL$CheckValue"
+    property "semanticFilter[0]" "ilog.rules.brl.IlrBRL$ValueFilter";
+
+  static com.ibm.ia.TimePeriod create(int dayOfMonth,
+                                      com.ibm.odm.time.Month monthOfYear,
+                                      int yearNumber)
+    property "semanticAction[0]" "ilog.rules.brl.IlrBRL$CheckValue"
+    property "semanticFilter[0]" "ilog.rules.brl.IlrBRL$ValueFilter";
+
+  static com.ibm.ia.TimePeriod asYear(com.ibm.odm.time.Date timePoint);
+  static com.ibm.ia.TimePeriod asMonth(com.ibm.odm.time.Date timePoint);
+  static com.ibm.ia.TimePeriod asWeek(com.ibm.odm.time.Date timePoint);
+  static com.ibm.ia.TimePeriod asDay(com.ibm.odm.time.Date timePoint);
+  static com.ibm.ia.TimePeriod asHour(com.ibm.odm.time.Date timePoint);
+  static com.ibm.ia.TimePeriod asMinute(com.ibm.odm.time.Date timePoint);
+  static com.ibm.ia.TimePeriod asSecond(com.ibm.odm.time.Date timePoint);
+
+  com.ibm.odm.time.Date getStartTime();
+  com.ibm.odm.time.Date getEndTime();
+
+  com.ibm.odm.time.Date timeBefore(com.ibm.ia.CalendarDuration duration);
+  com.ibm.odm.time.Date timeAfter(com.ibm.ia.CalendarDuration duration);
+
+  com.ibm.ia.TimePeriod periodBefore(com.ibm.ia.CalendarDuration duration);
+  com.ibm.ia.TimePeriod periodAfter(com.ibm.ia.CalendarDuration duration);
+
+  boolean after(com.ibm.odm.time.Date timePoint);
+  boolean before(com.ibm.odm.time.Date timePoint);
+  boolean contains(com.ibm.odm.time.Date timePoint);
+  boolean startsAt(com.ibm.odm.time.Date timePoint);
+  boolean endsAt(com.ibm.odm.time.Date timePoint);
+
+  boolean equalSeconds(com.ibm.ia.TimePeriod timePeriod);
+
+  boolean after(com.ibm.ia.TimePeriod timePeriod);
+  boolean before(com.ibm.ia.TimePeriod timePeriod);
+  boolean overlaps(com.ibm.ia.TimePeriod timePeriod);
+
+  // derived i2a time operators
+  boolean longer(com.ibm.ia.CalendarDuration duration);
+  boolean longerOrEquals(com.ibm.ia.CalendarDuration duration);
+  boolean shorter(com.ibm.ia.CalendarDuration duration);
+  boolean shorterOrEquals(com.ibm.ia.CalendarDuration duration);
+
+  boolean longer(com.ibm.ia.TimePeriod timePeriod);
+  boolean longerOrEquals(com.ibm.ia.TimePeriod timePeriod);
+  boolean shorter(com.ibm.ia.TimePeriod timePeriod);
+  boolean shorterOrEquals(com.ibm.ia.TimePeriod timePeriod);
+}
+
+
+package com.ibm.ia.timeline;
+
+class CenturyTimeLine {
+  static java.time.ZonedDateTime start(java.time.ZonedDateTime dateTime);
+  static final java.time.Period UNIT;
+}
+
+class YearTimeLine {
+  static java.time.ZonedDateTime start(java.time.ZonedDateTime dateTime);
+  static final java.time.Period UNIT;
+}
+class MonthTimeLine {
+  static java.time.ZonedDateTime start(java.time.ZonedDateTime dateTime);
+  static final java.time.Period UNIT;
+}
+/*
+class WeekTimeLine {
+  static java.time.ZonedDateTime start(java.time.ZonedDateTime dateTime);
+  static final java.time.Period UNIT;
+}
+*/
+class DayTimeLine {
+  static java.time.ZonedDateTime start(java.time.ZonedDateTime dateTime);
+  static final java.time.Period UNIT;
+}
+class HourTimeLine {
+  static java.time.ZonedDateTime start(java.time.ZonedDateTime dateTime);
+  static final java.time.Duration UNIT;
+}
+class MinuteTimeLine {
+  static java.time.ZonedDateTime start(java.time.ZonedDateTime dateTime);
+  static final java.time.Duration UNIT;
+}
+class SecondTimeLine {
+  static java.time.ZonedDateTime start(java.time.ZonedDateTime dateTime);
+  static final java.time.Duration UNIT;
+}
+class MillisecondTimeLine {
+  static java.time.ZonedDateTime start(java.time.ZonedDateTime dateTime);
+  static final java.time.Duration UNIT;
+}
+
+package com.ibm.ia.time;
+
+public class CalendarDuration implements java.time.temporal.TemporalAmount
+		property "dataio.provided" "true"
+  property "valueClass" "true"
+{
+    public readonly int days;
+    public readonly java.time.Duration duration;
+    public readonly int hours;
+    public readonly int minutes;
+    public readonly int months;
+    public readonly java.time.Period period;
+    public readonly int seconds;
+    public readonly java.util.List units domain 0,* class java.time.temporal.TemporalUnit;
+    public readonly int years;
+    public long get(java.time.temporal.TemporalUnit arg);
+    public com.ibm.ia.time.CalendarDuration negated();
+    public boolean equals(object o);
+    public int hashCode();
+    public static com.ibm.ia.time.CalendarDuration of(java.time.Duration arg);
+    public static com.ibm.ia.time.CalendarDuration of(java.time.Period arg);
+    public static com.ibm.ia.time.CalendarDuration of(java.time.Period arg1, java.time.Duration arg2);
+    public static com.ibm.ia.time.CalendarDuration of(long arg1, java.time.temporal.ChronoUnit arg2);
+    public com.ibm.ia.time.CalendarDuration plus(com.ibm.ia.time.CalendarDuration arg);
+    public static com.ibm.ia.time.CalendarDuration parse(string arg);
+
+    public static CalendarDuration getDuration(java.time.ZonedDateTime startWithNano,
+                                               java.time.ZonedDateTime endWithNano,
+                                               java.time.ZoneId zone);
+
+                                               
+}
+
+public class TimePeriod
+      property "dataio.provided" "true"
+  property "valueClass" "true"
+{
+    public TimePeriod(java.time.ZonedDateTime startTime,
+                       java.time.ZonedDateTime endTime);
+
+    public readonly java.time.ZonedDateTime startTime;
+    public readonly java.time.ZonedDateTime endTime;
+
+    public static com.ibm.ia.time.TimePeriod parse(string arg);
+    
+    public static com.ibm.ia.time.TimePeriod asYear(java.time.ZonedDateTime timePoint);
+    public static com.ibm.ia.time.TimePeriod asMonth(java.time.ZonedDateTime timePoint);
+    public static com.ibm.ia.time.TimePeriod asWeek(java.time.ZonedDateTime timePoint);
+    public static com.ibm.ia.time.TimePeriod asDay(java.time.ZonedDateTime timePoint);
+    public static com.ibm.ia.time.TimePeriod asHour(java.time.ZonedDateTime timePoint);
+    public static com.ibm.ia.time.TimePeriod asMinute(java.time.ZonedDateTime timePoint);
+    public static com.ibm.ia.time.TimePeriod asSecond(java.time.ZonedDateTime timePoint);
+    public boolean equalSeconds(com.ibm.ia.time.TimePeriod timePeriod);
+
+    public boolean equals(object o);
+    public int hashCode();
+}
+
+package com.ibm.rules.runtime;
+
+final class DateUtil
+    property hiddenType "true"
+{
+    static java.lang.Long yearsBetween(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+
+    static java.lang.Long monthsBetween(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+    
+    static java.lang.Long weeksBetween(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+
+    static java.lang.Long daysBetween(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+
+    static java.lang.Long hoursBetween(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+
+    static java.lang.Long minutesBetween(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+
+    static java.lang.Long secondsBetween(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+
+    static java.lang.Long yearsBetween(java.time.LocalDate left, java.time.LocalDate right);
+
+    static java.lang.Long monthsBetween(java.time.LocalDate left, java.time.LocalDate right);
+
+    static java.lang.Long weeksBetween(java.time.LocalDate left, java.time.LocalDate right);
+
+    static java.lang.Long daysBetween(java.time.LocalDate left, java.time.LocalDate right);
+
+    static com.ibm.ia.time.CalendarDuration durationInYears(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+
+    static com.ibm.ia.time.CalendarDuration durationInMonths(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+
+    static com.ibm.ia.time.CalendarDuration durationInWeeks(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+
+    static com.ibm.ia.time.CalendarDuration durationInDays(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+
+    static com.ibm.ia.time.CalendarDuration durationInHours(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+
+    static com.ibm.ia.time.CalendarDuration durationInMinutes(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+
+    static com.ibm.ia.time.CalendarDuration durationInSeconds(java.time.ZonedDateTime left, java.time.ZonedDateTime right);
+
+    static com.ibm.ia.CalendarDuration plus(com.ibm.ia.CalendarDuration left, com.ibm.ia.CalendarDuration right);
+
+    static com.ibm.ia.CalendarDuration years(long amount)
+      property "semanticAction[0]" "ilog.rules.brl.IlrBRL$CheckValue"
+      property "semanticFilter[0]" "ilog.rules.brl.IlrBRL$ValueFilter";
+      
+    static com.ibm.ia.CalendarDuration months(long amount)
+      property "semanticAction[0]" "ilog.rules.brl.IlrBRL$CheckValue"
+      property "semanticFilter[0]" "ilog.rules.brl.IlrBRL$ValueFilter";
+
+    static com.ibm.ia.CalendarDuration weeks(long amount)
+      property "semanticAction[0]" "ilog.rules.brl.IlrBRL$CheckValue"
+      property "semanticFilter[0]" "ilog.rules.brl.IlrBRL$ValueFilter";
+
+    static com.ibm.ia.CalendarDuration days(long amount)
+      property "semanticAction[0]" "ilog.rules.brl.IlrBRL$CheckValue"
+      property "semanticFilter[0]" "ilog.rules.brl.IlrBRL$ValueFilter"; 
+
+    static com.ibm.ia.CalendarDuration hours(long amount)
+      property "semanticAction[0]" "ilog.rules.brl.IlrBRL$CheckValue"
+      property "semanticFilter[0]" "ilog.rules.brl.IlrBRL$ValueFilter";
+
+    static com.ibm.ia.CalendarDuration minutes(long amount)
+      property "semanticAction[0]" "ilog.rules.brl.IlrBRL$CheckValue"
+      property "semanticFilter[0]" "ilog.rules.brl.IlrBRL$ValueFilter";
+
+    static com.ibm.ia.CalendarDuration seconds(long amount)
+      property "semanticAction[0]" "ilog.rules.brl.IlrBRL$CheckValue"
+      property "semanticFilter[0]" "ilog.rules.brl.IlrBRL$ValueFilter";
+}

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ilog.rules.language</groupId>
+        <artifactId>eclipse-plugin-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>com.ibm.odm.javatime.plugin</artifactId>
+    <packaging>eclipse-plugin</packaging>
+    <name>ODM Java Time Plugin</name>
+
+    <properties>
+       
+        <!-- Regular expressions for BOM template merging -->
+        <!-- Pattern to replace UUID in .bom files -->
+        <regex.bom.uuid.replace>property uuid "[^"]+"</regex.bom.uuid.replace>
+        <regex.bom.uuid.placeholder>property uuid "$${UUID}"</regex.bom.uuid.placeholder>
+        
+        <!-- Pattern to remove UUID property lines in subsequent .bom files -->
+        <regex.bom.uuid.remove>(?m)^property uuid "[^"]+"\r?\n\r?\n</regex.bom.uuid.remove>
+        
+        <!-- Pattern to replace UUID in .voc files -->
+        <regex.voc.uuid.replace>uuid = [^\r\n]+</regex.voc.uuid.replace>
+        <regex.voc.uuid.placeholder>uuid = $${UUID}</regex.voc.uuid.placeholder>
+        
+        <!-- Pattern to remove header and UUID in subsequent .voc files -->
+        <regex.voc.java.time.header>(?m)^# java_time_en_US\.voc\r?\nuuid = [^\r\n]+\r?\n\r?\n?</regex.voc.java.time.header>
+        <regex.voc.java.time.fr.header>(?m)^# java_time_fr_FR\.voc\r?\nuuid = [^\r\n]+\r?\n\r?\n?</regex.voc.java.time.fr.header>
+        <regex.voc.java.util.date.header>(?m)^# java_util_date_en_US\.voc\r?\nuuid = [^\r\n]+\r?\n\r?\n?</regex.voc.java.util.date.header>
+        <regex.voc.java.util.date.fr.header>(?m)^# java_util_date_fr_FR\.voc\r?\nuuid = [^\r\n]+\r?\n\r?\n?</regex.voc.java.util.date.fr.header>
+        
+        
+        <!-- Pattern to replace UUID in .b2xa files (without XML entities) -->
+        <regex.b2xa.uuid.replace>&lt;id&gt;[^&lt;]+&lt;/id&gt;</regex.b2xa.uuid.replace>
+        <regex.b2xa.uuid.placeholder>&lt;id&gt;$${UUID}&lt;/id&gt;</regex.b2xa.uuid.placeholder>
+        <!-- Pattern to remove closing tag in .b2xa files -->
+        <regex.b2xa.closing.tag>&lt;/b2x:translation&gt;\s*$</regex.b2xa.closing.tag>
+        
+        <!-- Pattern to remove header in subsequent .b2xa files -->
+        <regex.b2xa.header>(?s)^.*?&lt;b2x:translation[^&gt;]+&lt;\s*&lt;lang&lt;[^&lt;]+&lt;/lang&lt;\s*&lt;id&lt;[^&lt;]+&lt;/id&lt;\s*</regex.b2xa.header>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- Generate BOM templates from source models during build -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>merge-bom-templates</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="Merging Compatible BOM templates..."/>
+                                <!-- Merge Compatible .bom files -->
+                                <concat destfile="${project.basedir}/resources/templates/compatible/javatime-compatible.bom" fixlastline="yes">
+                                    <filelist dir="${project.basedir}/../../JavaTimeModelCompatible/bom" files="java_time_compiler_support.bom"/>
+                                    <filterchain>
+                                        <tokenfilter>
+                                            <filetokenizer/>
+                                            <replaceregex pattern='${regex.bom.uuid.replace}' replace='${regex.bom.uuid.placeholder}' flags="g"/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </concat>
+                                <concat destfile="${project.basedir}/resources/templates/compatible/javatime-compatible.bom" append="true" fixlastline="yes">
+                                    <filelist dir="${project.basedir}/../../JavaTimeModelCompatible/bom" files="java_time.bom"/>
+                                    <filterchain>
+                                        <tokenfilter>
+                                            <filetokenizer/>
+                                            <replaceregex pattern='${regex.bom.uuid.remove}' replace='' flags="g"/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </concat>
+                                
+                                <!-- Merge Compatible .voc files -->
+                                <concat destfile="${project.basedir}/resources/templates/compatible/javatime-compatible_en_US.voc" fixlastline="yes">
+                                    <filelist dir="${project.basedir}/../../JavaTimeModelCompatible/bom" files="java_time_compiler_support_en_US.voc,java_time_en_US.voc"/>
+                                    <filterchain>
+                                        <tokenfilter>
+                                            <filetokenizer/>
+                                            <replaceregex pattern='${regex.voc.uuid.replace}' replace='${regex.voc.uuid.placeholder}' flags="g"/>
+                                            <replaceregex pattern='${regex.voc.java.time.header}' replace='' flags="g"/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </concat>
+                                <concat destfile="${project.basedir}/resources/templates/compatible/javatime-compatible_fr_FR.voc" fixlastline="yes">
+                                    <filelist dir="${project.basedir}/../../JavaTimeModelCompatible/bom" files="java_time_compiler_support_en_US.voc,java_time_fr_FR.voc"/>
+                                    <filterchain>
+                                        <tokenfilter>
+                                            <filetokenizer/>
+                                            <replaceregex pattern='${regex.voc.uuid.replace}' replace='${regex.voc.uuid.placeholder}' flags="g"/>
+                                            <replaceregex pattern='${regex.voc.java.time.fr.header}' replace='' flags="g"/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </concat>
+                                
+                                <!-- Merge Compatible .b2xa files -->
+                                <concat destfile="${project.basedir}/resources/templates/compatible/javatime-compatible.b2xa" fixlastline="yes">
+                                    <filelist dir="${project.basedir}/../../JavaTimeModelCompatible/bom" files="java_time_compiler_support.b2xa"/>
+                                    <filterchain>
+                                        <tokenfilter>
+                                            <filetokenizer/>
+                                            <replaceregex pattern='${regex.b2xa.uuid.replace}'  replace='${regex.b2xa.uuid.placeholder}' flags="g"/>
+
+                                            <replaceregex pattern='${regex.b2xa.closing.tag}\s*$' replace='' flags="g"/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </concat>
+                                <concat destfile="${project.basedir}/resources/templates/compatible/javatime-compatible.b2xa" append="true" fixlastline="yes">
+                                    <filelist dir="${project.basedir}/../../JavaTimeModelCompatible/bom" files="java_time.b2xa"/>
+                                    <filterchain>
+                                        <tokenfilter>
+                                            <filetokenizer/>
+                                            <replaceregex pattern='${regex.b2xa.header}' replace='' flags="g"/>
+                                            <replaceregex pattern='${regex.b2xa.closing.tag}' replace='' flags="g"/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </concat>
+                                <echo file="${project.basedir}/resources/templates/compatible/javatime-compatible.b2xa" append="true">&lt;/b2x:translation&gt;</echo>
+                                
+                                <echo message="Merging Strict BOM templates..."/>
+                                <!-- Merge Strict .bom files -->
+                                <concat destfile="${project.basedir}/resources/templates/strict/javatime-strict.bom" fixlastline="yes">
+                                    <filelist dir="${project.basedir}/../../JavaTimeModelStrict/bom" files="java_time_compiler_support.bom"/>
+                                    <filterchain>
+                                        <tokenfilter>
+                                            <filetokenizer/>
+                                            <replaceregex pattern='${regex.bom.uuid.replace}' replace='${regex.bom.uuid.placeholder}' flags="g"/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </concat>
+                                <concat destfile="${project.basedir}/resources/templates/strict/javatime-strict.bom" append="true" fixlastline="yes">
+                                    <filelist dir="${project.basedir}/../../JavaTimeModelStrict/bom" files="java_time.bom,java_util_date.bom"/>
+                                    <filterchain>
+                                        <tokenfilter>
+                                            <filetokenizer/>
+                                            <replaceregex pattern='${regex.bom.uuid.remove}' replace='' flags="g"/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </concat>
+                                
+                                <!-- Merge Strict .voc files -->
+                                <concat destfile="${project.basedir}/resources/templates/strict/javatime-strict_en_US.voc" fixlastline="yes">
+                                    <filelist dir="${project.basedir}/../../JavaTimeModelStrict/bom" files="java_time_compiler_support_en_US.voc,java_time_en_US.voc,java_util_date_en_US.voc"/>
+                                    <filterchain>
+                                        <tokenfilter>
+                                            <filetokenizer/>
+                                            <replaceregex pattern='${regex.voc.uuid.replace}' replace='${regex.voc.uuid.placeholder}' flags="g"/>
+                                            <replaceregex pattern='${regex.voc.java.time.header}' replace='' flags="g"/>
+                                            <replaceregex pattern='${regex.voc.java.util.date.header}' replace='' flags="g"/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </concat>
+                                <concat destfile="${project.basedir}/resources/templates/strict/javatime-strict_fr_FR.voc" fixlastline="yes">
+                                    <filelist dir="${project.basedir}/../../JavaTimeModelStrict/bom" files="java_time_compiler_support_fr_FR.voc,java_time_fr_FR.voc,java_util_date_fr_FR.voc"/>
+                                    <filterchain>
+                                        <tokenfilter>
+                                            <filetokenizer/>
+                                            <replaceregex pattern='${regex.voc.uuid.replace}' replace='${regex.voc.uuid.placeholder}' flags="g"/>
+                                            <replaceregex pattern='${regex.voc.java.time.fr.header}' replace='' flags="g"/>
+                                            <replaceregex pattern='${regex.voc.java.util.date.fr.header}' replace='' flags="g"/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </concat>
+                                
+                                <!-- Merge Strict .b2xa files -->
+                                <concat destfile="${project.basedir}/resources/templates/strict/javatime-strict.b2xa" fixlastline="yes">
+                                    <filelist dir="${project.basedir}/../../JavaTimeModelStrict/bom" files="java_time_compiler_support.b2xa"/>
+                                    <filterchain>
+                                        <tokenfilter>
+                                            <filetokenizer/>
+                                            <replaceregex pattern='${regex.b2xa.uuid.replace}' replace='${regex.b2xa.uuid.placeholder}' flags="g"/>
+                                            <replaceregex pattern='${regex.b2xa.closing.tag}' replace='' flags="g"/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </concat>
+                                <concat destfile="${project.basedir}/resources/templates/strict/javatime-strict.b2xa" append="true" fixlastline="yes">
+                                    <filelist dir="${project.basedir}/../../JavaTimeModelStrict/bom" files="java_time.b2xa"/>
+                                    <filterchain>
+                                        <tokenfilter>
+                                            <filetokenizer/>
+                                            <replaceregex pattern='${regex.b2xa.header}' replace='' flags="g"/>
+                                            <replaceregex pattern='${regex.b2xa.closing.tag}' replace='' flags="g"/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </concat>
+                                <echo file="${project.basedir}/resources/templates/strict/javatime-strict.b2xa" append="true">&lt;/b2x:translation&gt;</echo>
+                                
+                                <echo message="BOM template merging complete!"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-compiler-plugin</artifactId>
+                <version>${tycho.version}</version>
+                <configuration>
+                    <useProjectSettings>false</useProjectSettings>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+

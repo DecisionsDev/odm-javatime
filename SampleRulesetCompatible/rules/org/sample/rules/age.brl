@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>age</name>
+  <uuid>ae2582c6-7f99-4c36-aec1-8b0f6d734ef8</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+	set 'age' to the number of years between 
+		now as time.date & time in "Europe/Paris" and 
+		the birth date of 'the customer' as time.date & time in "Europe/Paris";
+then
+	print "You are " + age + " years old.";]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

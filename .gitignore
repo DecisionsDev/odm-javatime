@@ -1,0 +1,12 @@
+output
+bin
+.settings
+.DS_Store
+/.idea
+/.vscode
+/.metals
+.idea/
+*/resources/xom-libraries
+target/
+javatime-integration/
+eclipse-plugin/com.ibm.odm.javatime.plugin/resources/templates/

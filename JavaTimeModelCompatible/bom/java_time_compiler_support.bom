@@ -1,0 +1,745 @@
+property uuid "c476c0b1-ea8d-4e68-8c97-fea230ca2b64"
+
+package java.time;
+
+public abstract class Clock
+{
+    public readonly abstract java.time.ZoneId zone;
+    public static java.time.Clock fixed(java.time.Instant arg1, java.time.ZoneId arg2);
+    public java.time.Instant instant();
+    public abstract long millis();
+    public static java.time.Clock offset(java.time.Clock arg1, java.time.Duration arg2);
+    public static java.time.Clock system(java.time.ZoneId arg);
+    public static java.time.Clock systemDefaultZone();
+    public static java.time.Clock systemUTC();
+    public static java.time.Clock tick(java.time.Clock arg1, java.time.Duration arg2);
+    public static java.time.Clock tickMinutes(java.time.ZoneId arg);
+    public static java.time.Clock tickSeconds(java.time.ZoneId arg);
+    public abstract java.time.Clock withZone(java.time.ZoneId arg);
+}
+
+public final class DayOfWeek
+        extends java.lang.Enum
+{
+    domain {static MONDAY, static TUESDAY, static WEDNESDAY, static THURSDAY, static FRIDAY, static SATURDAY, static SUNDAY}
+    public static final readonly java.time.DayOfWeek FRIDAY;
+    public static final readonly java.time.DayOfWeek MONDAY;
+    public static final readonly java.time.DayOfWeek SATURDAY;
+    public static final readonly java.time.DayOfWeek SUNDAY;
+    public static final readonly java.time.DayOfWeek THURSDAY;
+    public static final readonly java.time.DayOfWeek TUESDAY;
+    public static final readonly java.time.DayOfWeek WEDNESDAY;
+    public readonly int value;
+    public java.time.DayOfWeek minus(long arg);
+    public static java.time.DayOfWeek of(int arg);
+    public java.time.DayOfWeek plus(long arg);
+    public static java.time.DayOfWeek valueOf(string arg);
+    public static java.time.DayOfWeek[] values();
+}
+
+public final class Duration
+        extends java.lang.Comparable, java.io.Serializable
+  property "valueClass" "true"
+{
+    public static final readonly java.time.Duration ZERO;
+    public readonly int nano;
+    public readonly boolean negative;
+    public readonly long seconds;
+    public readonly java.util.List units domain 0,* class java.time.temporal.TemporalUnit;
+    public readonly boolean zero;
+    public java.time.Duration abs();
+    public int compareTo(java.time.Duration arg);
+    public java.time.Duration dividedBy(long arg);
+    public boolean equals(object arg);
+    public long get(java.time.temporal.TemporalUnit arg);
+    public int hashCode();
+    public java.time.Duration minus(java.time.Duration arg);
+    public java.time.Duration minus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.Duration minusDays(long arg);
+    public java.time.Duration minusHours(long arg);
+    public java.time.Duration minusMillis(long arg);
+    public java.time.Duration minusMinutes(long arg);
+    public java.time.Duration minusNanos(long arg);
+    public java.time.Duration minusSeconds(long arg);
+    public java.time.Duration multipliedBy(long arg);
+    public java.time.Duration negated();
+    public static java.time.Duration of(long arg1, java.time.temporal.TemporalUnit arg2);
+    public static java.time.Duration ofDays(long arg);
+    public static java.time.Duration ofHours(long arg);
+    public static java.time.Duration ofMillis(long arg);
+    public static java.time.Duration ofMinutes(long arg);
+    public static java.time.Duration ofNanos(long arg);
+    public static java.time.Duration ofSeconds(long arg);
+    public static java.time.Duration ofSeconds(long arg1, long arg2);
+    public static java.time.Duration parse(java.lang.CharSequence arg);
+    public java.time.Duration plus(java.time.Duration arg);
+    public java.time.Duration plus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.Duration plusDays(long arg);
+    public java.time.Duration plusHours(long arg);
+    public java.time.Duration plusMillis(long arg);
+    public java.time.Duration plusMinutes(long arg);
+    public java.time.Duration plusNanos(long arg);
+    public java.time.Duration plusSeconds(long arg);
+    public long toDays();
+    public long toHours();
+    public long toMillis();
+    public long toMinutes();
+    public long toNanos();
+    public string toString();
+    public java.time.Duration withNanos(int arg);
+    public java.time.Duration withSeconds(long arg);
+    public long getSeconds();
+}
+
+
+public final class Instant
+        extends java.lang.Comparable, java.io.Serializable
+  property "valueClass" "true"
+{
+    public static final readonly java.time.Instant EPOCH;
+    public static final readonly java.time.Instant MAX;
+    public static final readonly java.time.Instant MIN;
+    public readonly long epochSecond;
+    public readonly int nano;
+    public java.time.OffsetDateTime atOffset(java.time.ZoneOffset arg);
+    public java.time.ZonedDateTime atZone(java.time.ZoneId arg);
+    public int compareTo(java.time.Instant arg);
+    public boolean equals(object arg);
+    public int hashCode();
+    public boolean isAfter(java.time.Instant arg);
+    public boolean isBefore(java.time.Instant arg);
+    public java.time.Instant minus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.Instant minusMillis(long arg);
+    public java.time.Instant minusNanos(long arg);
+    public java.time.Instant minusSeconds(long arg);
+    public static java.time.Instant now();
+    public static java.time.Instant now(java.time.Clock arg);
+    public static java.time.Instant ofEpochMilli(long arg);
+    public static java.time.Instant ofEpochSecond(long arg);
+    public static java.time.Instant ofEpochSecond(long arg1, long arg2);
+    public static java.time.Instant parse(java.lang.CharSequence arg);
+    public java.time.Instant plus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.Instant plusMillis(long arg);
+    public java.time.Instant plusNanos(long arg);
+    public java.time.Instant plusSeconds(long arg);
+    public long toEpochMilli();
+    public string toString();
+    public java.time.Instant truncatedTo(java.time.temporal.TemporalUnit arg);
+}
+
+public final class LocalDate
+        extends java.io.Serializable
+  property de.reload "true"
+  property "valueClass" "true"
+{
+    public static final readonly java.time.LocalDate MAX;
+    public static final readonly java.time.LocalDate MIN;
+    public readonly int dayOfMonth;
+    public readonly java.time.DayOfWeek dayOfWeek;
+    public readonly int dayOfYear;
+    public readonly boolean leapYear;
+    public readonly java.time.Month month;
+    public readonly int monthValue;
+    public readonly int year;
+    public java.time.LocalDateTime atStartOfDay();
+    public java.time.ZonedDateTime atStartOfDay(java.time.ZoneId arg);
+    public java.time.LocalDateTime atTime(java.time.LocalTime arg);
+    public java.time.OffsetDateTime atTime(java.time.OffsetTime arg);
+    public java.time.LocalDateTime atTime(int arg1, int arg2);
+    public java.time.LocalDateTime atTime(int arg1, int arg2, int arg3);
+    public java.time.LocalDateTime atTime(int arg1, int arg2, int arg3, int arg4);
+    public boolean equals(object arg);
+    public int hashCode();
+    public int lengthOfMonth();
+    public int lengthOfYear();
+    public java.time.LocalDate minus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.LocalDate minusDays(long arg);
+    public java.time.LocalDate minusMonths(long arg);
+    public java.time.LocalDate minusWeeks(long arg);
+    public java.time.LocalDate minusYears(long arg);
+    public static java.time.LocalDate now();
+    public static java.time.LocalDate now(java.time.Clock arg);
+    public static java.time.LocalDate now(java.time.ZoneId arg);
+    public static java.time.LocalDate of(int arg1, java.time.Month arg2, int arg3);
+    public static java.time.LocalDate of(int arg1, int arg2, int arg3);
+    public static java.time.LocalDate ofEpochDay(long arg);
+    public static java.time.LocalDate ofYearDay(int arg1, int arg2);
+    public static java.time.LocalDate parse(java.lang.CharSequence arg);
+    public java.time.LocalDate plus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.LocalDate plusDays(long arg);
+    public java.time.LocalDate plusMonths(long arg);
+    public java.time.LocalDate plusWeeks(long arg);
+    public java.time.LocalDate plusYears(long arg);
+    public long toEpochDay();
+    public string toString();
+    public java.time.LocalDate withDayOfMonth(int arg);
+    public java.time.LocalDate withDayOfYear(int arg);
+    public java.time.LocalDate withMonth(int arg);
+    public java.time.LocalDate withYear(int arg);
+}
+
+public final class LocalDateTime
+        extends java.io.Serializable
+  property "valueClass" "true"
+{
+    public static final readonly java.time.LocalDateTime MAX;
+    public static final readonly java.time.LocalDateTime MIN;
+    public readonly int dayOfMonth;
+    public readonly java.time.DayOfWeek dayOfWeek;
+    public readonly int dayOfYear;
+    public readonly int hour;
+    public readonly int minute;
+    public readonly java.time.Month month;
+    public readonly int monthValue;
+    public readonly int nano;
+    public readonly int second;
+    public readonly int year;
+    public java.time.OffsetDateTime atOffset(java.time.ZoneOffset arg);
+    public java.time.ZonedDateTime atZone(java.time.ZoneId arg);
+    public boolean equals(object arg);
+    public int hashCode();
+    public java.time.LocalDateTime minus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.LocalDateTime minusDays(long arg);
+    public java.time.LocalDateTime minusHours(long arg);
+    public java.time.LocalDateTime minusMinutes(long arg);
+    public java.time.LocalDateTime minusMonths(long arg);
+    public java.time.LocalDateTime minusNanos(long arg);
+    public java.time.LocalDateTime minusSeconds(long arg);
+    public java.time.LocalDateTime minusWeeks(long arg);
+    public java.time.LocalDateTime minusYears(long arg);
+    public static java.time.LocalDateTime now();
+    public static java.time.LocalDateTime now(java.time.Clock arg);
+    public static java.time.LocalDateTime now(java.time.ZoneId arg);
+    public static java.time.LocalDateTime of(java.time.LocalDate arg1, java.time.LocalTime arg2);
+    public static java.time.LocalDateTime of(int arg1, java.time.Month arg2, int arg3, int arg4, int arg5);
+    public static java.time.LocalDateTime of(int arg1, int arg2, int arg3, int arg4, int arg5);
+    public static java.time.LocalDateTime of(int arg1, java.time.Month arg2, int arg3, int arg4, int arg5, int arg6);
+    public static java.time.LocalDateTime of(int arg1, int arg2, int arg3, int arg4, int arg5, int arg6);
+    public static java.time.LocalDateTime of(int arg1, java.time.Month arg2, int arg3, int arg4, int arg5, int arg6, int arg7);
+    public static java.time.LocalDateTime of(int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7);
+    public static java.time.LocalDateTime ofEpochSecond(long arg1, int arg2, java.time.ZoneOffset arg3);
+    public static java.time.LocalDateTime ofInstant(java.time.Instant arg1, java.time.ZoneId arg2);
+    public static java.time.LocalDateTime parse(java.lang.CharSequence arg);
+    public java.time.LocalDateTime plus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.LocalDateTime plusDays(long arg);
+    public java.time.LocalDateTime plusHours(long arg);
+    public java.time.LocalDateTime plusMinutes(long arg);
+    public java.time.LocalDateTime plusMonths(long arg);
+    public java.time.LocalDateTime plusNanos(long arg);
+    public java.time.LocalDateTime plusSeconds(long arg);
+    public java.time.LocalDateTime plusWeeks(long arg);
+    public java.time.LocalDateTime plusYears(long arg);
+    public java.time.LocalDate toLocalDate();
+    public java.time.LocalTime toLocalTime();
+    public string toString();
+    public java.time.LocalDateTime truncatedTo(java.time.temporal.TemporalUnit arg);
+    public java.time.LocalDateTime withDayOfMonth(int arg);
+    public java.time.LocalDateTime withDayOfYear(int arg);
+    public java.time.LocalDateTime withHour(int arg);
+    public java.time.LocalDateTime withMinute(int arg);
+    public java.time.LocalDateTime withMonth(int arg);
+    public java.time.LocalDateTime withNano(int arg);
+    public java.time.LocalDateTime withSecond(int arg);
+    public java.time.LocalDateTime withYear(int arg);
+}
+
+public final class LocalTime
+        extends java.lang.Comparable, java.io.Serializable
+  property "valueClass" "true"
+{
+    public static final readonly java.time.LocalTime MAX;
+    public static final readonly java.time.LocalTime MIDNIGHT;
+    public static final readonly java.time.LocalTime MIN;
+    public static final readonly java.time.LocalTime NOON;
+    public readonly int hour;
+    public readonly int minute;
+    public readonly int nano;
+    public readonly int second;
+    public java.time.LocalDateTime atDate(java.time.LocalDate arg);
+    public java.time.OffsetTime atOffset(java.time.ZoneOffset arg);
+    public int compareTo(java.time.LocalTime arg);
+    public boolean equals(object arg);
+    public int hashCode();
+    public boolean isAfter(java.time.LocalTime arg);
+    public boolean isBefore(java.time.LocalTime arg);
+    public java.time.LocalTime minus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.LocalTime minusHours(long arg);
+    public java.time.LocalTime minusMinutes(long arg);
+    public java.time.LocalTime minusNanos(long arg);
+    public java.time.LocalTime minusSeconds(long arg);
+    public static java.time.LocalTime now();
+    public static java.time.LocalTime now(java.time.Clock arg);
+    public static java.time.LocalTime now(java.time.ZoneId arg);
+    public static java.time.LocalTime of(int arg1, int arg2);
+    public static java.time.LocalTime of(int arg1, int arg2, int arg3);
+    public static java.time.LocalTime of(int arg1, int arg2, int arg3, int arg4);
+    public static java.time.LocalTime ofNanoOfDay(long arg);
+    public static java.time.LocalTime ofSecondOfDay(long arg);
+    public static java.time.LocalTime parse(java.lang.CharSequence arg);
+    public java.time.LocalTime plus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.LocalTime plusHours(long arg);
+    public java.time.LocalTime plusMinutes(long arg);
+    public java.time.LocalTime plusNanos(long arg);
+    public java.time.LocalTime plusSeconds(long arg);
+    public long toNanoOfDay();
+    public int toSecondOfDay();
+    public string toString();
+    public java.time.LocalTime truncatedTo(java.time.temporal.TemporalUnit arg);
+    public java.time.LocalTime withHour(int arg);
+    public java.time.LocalTime withMinute(int arg);
+    public java.time.LocalTime withNano(int arg);
+    public java.time.LocalTime withSecond(int arg);
+}
+
+public final class Month
+        extends java.lang.Enum
+{
+    domain {static JANUARY, static FEBRUARY, static MARCH, static APRIL, static MAY, static JUNE, static JULY, static AUGUST, static SEPTEMBER, static OCTOBER, static NOVEMBER, static DECEMBER}
+    public static final readonly java.time.Month APRIL;
+    public static final readonly java.time.Month AUGUST;
+    public static final readonly java.time.Month DECEMBER;
+    public static final readonly java.time.Month FEBRUARY;
+    public static final readonly java.time.Month JANUARY;
+    public static final readonly java.time.Month JULY;
+    public static final readonly java.time.Month JUNE;
+    public static final readonly java.time.Month MARCH;
+    public static final readonly java.time.Month MAY;
+    public static final readonly java.time.Month NOVEMBER;
+    public static final readonly java.time.Month OCTOBER;
+    public static final readonly java.time.Month SEPTEMBER;
+    public readonly int value;
+    public int firstDayOfYear(boolean arg);
+    public int length(boolean arg);
+    public int maxLength();
+    public int minLength();
+    public java.time.Month minus(long arg);
+    public static java.time.Month of(int arg);
+    public java.time.Month plus(long arg);
+    public static java.time.Month valueOf(string arg);
+    public static java.time.Month[] values();
+}
+
+public final class MonthDay
+        extends java.lang.Comparable, java.io.Serializable
+  property "valueClass" "true"
+{
+    public readonly int dayOfMonth;
+    public readonly java.time.Month month;
+    public java.time.LocalDate atYear(int arg);
+    public int compareTo(java.time.MonthDay arg);
+    public boolean equals(object arg);
+    public int hashCode();
+    public boolean isAfter(java.time.MonthDay arg);
+    public boolean isBefore(java.time.MonthDay arg);
+    public boolean isValidYear(int arg);
+    public static java.time.MonthDay now();
+    public static java.time.MonthDay now(java.time.Clock arg);
+    public static java.time.MonthDay now(java.time.ZoneId arg);
+    public static java.time.MonthDay of(java.time.Month arg1, int arg2);
+    public static java.time.MonthDay of(int arg1, int arg2);
+    public static java.time.MonthDay parse(java.lang.CharSequence arg);
+    public string toString();
+    public java.time.MonthDay with(java.time.Month arg);
+    public java.time.MonthDay withDayOfMonth(int arg);
+    public java.time.MonthDay withMonth(int arg);
+}
+
+public final class OffsetDateTime
+        extends java.lang.Comparable, java.io.Serializable
+  property "valueClass" "true"
+{
+    public static final readonly java.time.OffsetDateTime MAX;
+    public static final readonly java.time.OffsetDateTime MIN;
+    public readonly int dayOfMonth;
+    public readonly java.time.DayOfWeek dayOfWeek;
+    public readonly int dayOfYear;
+    public readonly int hour;
+    public readonly int minute;
+    public readonly java.time.Month month;
+    public readonly int monthValue;
+    public readonly int nano;
+    public readonly java.time.ZoneOffset offset;
+    public readonly int second;
+    public readonly int year;
+    public java.time.ZonedDateTime atZoneSameInstant(java.time.ZoneId arg);
+    public java.time.ZonedDateTime atZoneSimilarLocal(java.time.ZoneId arg);
+    public int compareTo(java.time.OffsetDateTime arg);
+    public boolean equals(object arg);
+    public int hashCode();
+    public boolean isAfter(java.time.OffsetDateTime arg);
+    public boolean isBefore(java.time.OffsetDateTime arg);
+    public boolean isEqual(java.time.OffsetDateTime arg);
+    public java.time.OffsetDateTime minus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.OffsetDateTime minusDays(long arg);
+    public java.time.OffsetDateTime minusHours(long arg);
+    public java.time.OffsetDateTime minusMinutes(long arg);
+    public java.time.OffsetDateTime minusMonths(long arg);
+    public java.time.OffsetDateTime minusNanos(long arg);
+    public java.time.OffsetDateTime minusSeconds(long arg);
+    public java.time.OffsetDateTime minusWeeks(long arg);
+    public java.time.OffsetDateTime minusYears(long arg);
+    public static java.time.OffsetDateTime now();
+    public static java.time.OffsetDateTime now(java.time.Clock arg);
+    public static java.time.OffsetDateTime now(java.time.ZoneId arg);
+    public static java.time.OffsetDateTime of(java.time.LocalDateTime arg1, java.time.ZoneOffset arg2);
+    public static java.time.OffsetDateTime of(java.time.LocalDate arg1, java.time.LocalTime arg2, java.time.ZoneOffset arg3);
+    public static java.time.OffsetDateTime of(int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, java.time.ZoneOffset arg8);
+    public static java.time.OffsetDateTime ofInstant(java.time.Instant arg1, java.time.ZoneId arg2);
+    public static java.time.OffsetDateTime parse(java.lang.CharSequence arg);
+    public java.time.OffsetDateTime plus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.OffsetDateTime plusDays(long arg);
+    public java.time.OffsetDateTime plusHours(long arg);
+    public java.time.OffsetDateTime plusMinutes(long arg);
+    public java.time.OffsetDateTime plusMonths(long arg);
+    public java.time.OffsetDateTime plusNanos(long arg);
+    public java.time.OffsetDateTime plusSeconds(long arg);
+    public java.time.OffsetDateTime plusWeeks(long arg);
+    public java.time.OffsetDateTime plusYears(long arg);
+    public long toEpochSecond();
+    public java.time.Instant toInstant();
+    public java.time.LocalDate toLocalDate();
+    public java.time.LocalDateTime toLocalDateTime();
+    public java.time.LocalTime toLocalTime();
+    public java.time.OffsetTime toOffsetTime();
+    public string toString();
+    public java.time.ZonedDateTime toZonedDateTime();
+    public java.time.OffsetDateTime truncatedTo(java.time.temporal.TemporalUnit arg);
+    public java.time.OffsetDateTime withDayOfMonth(int arg);
+    public java.time.OffsetDateTime withDayOfYear(int arg);
+    public java.time.OffsetDateTime withHour(int arg);
+    public java.time.OffsetDateTime withMinute(int arg);
+    public java.time.OffsetDateTime withMonth(int arg);
+    public java.time.OffsetDateTime withNano(int arg);
+    public java.time.OffsetDateTime withOffsetSameInstant(java.time.ZoneOffset arg);
+    public java.time.OffsetDateTime withOffsetSameLocal(java.time.ZoneOffset arg);
+    public java.time.OffsetDateTime withSecond(int arg);
+    public java.time.OffsetDateTime withYear(int arg);
+}
+
+
+public final class OffsetTime
+        extends java.lang.Comparable, java.io.Serializable
+  property "valueClass" "true"
+{
+    public readonly int hour;
+    public readonly int minute;
+    public readonly int nano;
+    public readonly java.time.ZoneOffset offset;
+    public readonly int second;
+    public java.time.OffsetDateTime atDate(java.time.LocalDate arg);
+    public int compareTo(java.time.OffsetTime arg);
+    public boolean equals(object arg);
+    public int hashCode();
+    public boolean isAfter(java.time.OffsetTime arg);
+    public boolean isBefore(java.time.OffsetTime arg);
+    public boolean isEqual(java.time.OffsetTime arg);
+    public java.time.OffsetTime minus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.OffsetTime minusHours(long arg);
+    public java.time.OffsetTime minusMinutes(long arg);
+    public java.time.OffsetTime minusNanos(long arg);
+    public java.time.OffsetTime minusSeconds(long arg);
+    public static java.time.OffsetTime now();
+    public static java.time.OffsetTime now(java.time.Clock arg);
+    public static java.time.OffsetTime now(java.time.ZoneId arg);
+    public static java.time.OffsetTime of(java.time.LocalTime arg1, java.time.ZoneOffset arg2);
+    public static java.time.OffsetTime of(int arg1, int arg2, int arg3, int arg4, java.time.ZoneOffset arg5);
+    public static java.time.OffsetTime ofInstant(java.time.Instant arg1, java.time.ZoneId arg2);
+    public static java.time.OffsetTime parse(java.lang.CharSequence arg);
+    public java.time.OffsetTime plus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.OffsetTime plusHours(long arg);
+    public java.time.OffsetTime plusMinutes(long arg);
+    public java.time.OffsetTime plusNanos(long arg);
+    public java.time.OffsetTime plusSeconds(long arg);
+    public java.time.LocalTime toLocalTime();
+    public string toString();
+    public java.time.OffsetTime truncatedTo(java.time.temporal.TemporalUnit arg);
+    public java.time.OffsetTime withHour(int arg);
+    public java.time.OffsetTime withMinute(int arg);
+    public java.time.OffsetTime withNano(int arg);
+    public java.time.OffsetTime withOffsetSameInstant(java.time.ZoneOffset arg);
+    public java.time.OffsetTime withOffsetSameLocal(java.time.ZoneOffset arg);
+    public java.time.OffsetTime withSecond(int arg);
+}
+
+
+public final class Period
+        extends java.io.Serializable
+  property "valueClass" "true"
+{
+    public static final readonly java.time.Period ZERO;
+    public readonly int days;
+    public readonly int months;
+    public readonly boolean negative;
+    public readonly java.util.List units domain 0,* class java.time.temporal.TemporalUnit;
+    public readonly int years;
+    public readonly boolean zero;
+    public static java.time.Period between(java.time.LocalDate arg1, java.time.LocalDate arg2);
+    public boolean equals(object arg);
+    public long get(java.time.temporal.TemporalUnit arg);
+    public int hashCode();
+    public java.time.Period minus(java.time.Period arg);
+    public java.time.Period minusDays(long arg);
+    public java.time.Period minusMonths(long arg);
+    public java.time.Period minusYears(long arg);
+    public java.time.Period multipliedBy(int arg);
+    public java.time.Period negated();
+    public java.time.Period normalized();
+    public static java.time.Period of(int arg1, int arg2, int arg3);
+    public static java.time.Period ofDays(int arg);
+    public static java.time.Period ofMonths(int arg);
+    public static java.time.Period ofYears(int arg);
+    public static java.time.Period parse(java.lang.CharSequence arg);
+    public java.time.Period plus(java.time.Period arg);
+    public java.time.Period plusDays(long arg);
+    public java.time.Period plusMonths(long arg);
+    public java.time.Period plusYears(long arg);
+    public string toString();
+    public long toTotalMonths();
+    public java.time.Period withDays(int arg);
+    public java.time.Period withMonths(int arg);
+    public java.time.Period withYears(int arg);
+}
+
+
+public final class Year
+        extends java.lang.Comparable, java.io.Serializable
+  property "valueClass" "true"
+{
+   public static final readonly int MAX_VALUE;
+    public static final readonly int MIN_VALUE;
+    public readonly boolean leap;
+    public readonly int value;
+    public java.time.LocalDate atDay(int arg);
+    public java.time.YearMonth atMonth(java.time.Month arg);
+    public java.time.YearMonth atMonth(int arg);
+    public java.time.LocalDate atMonthDay(java.time.MonthDay arg);
+    public int compareTo(java.time.Year arg);
+    public boolean equals(object arg);
+    public int hashCode();
+    public boolean isAfter(java.time.Year arg);
+    public boolean isBefore(java.time.Year arg);
+    public static boolean isLeap(long arg);
+    public boolean isValidMonthDay(java.time.MonthDay arg);
+    public int length();
+    public java.time.Year minus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.Year minusYears(long arg);
+    public static java.time.Year now();
+    public static java.time.Year now(java.time.Clock arg);
+    public static java.time.Year now(java.time.ZoneId arg);
+    public static java.time.Year of(int arg);
+    public static java.time.Year parse(java.lang.CharSequence arg);
+    public java.time.Year plus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.Year plusYears(long arg);
+    public string toString();
+}
+
+public final class YearMonth
+        extends java.lang.Comparable, java.io.Serializable
+  property "valueClass" "true"
+{
+    public readonly boolean leapYear;
+    public readonly java.time.Month month;
+    public readonly int monthValue;
+    public readonly int year;
+    public java.time.LocalDate atDay(int arg);
+    public java.time.LocalDate atEndOfMonth();
+    public int compareTo(java.time.YearMonth arg);
+    public boolean equals(object arg);
+    public int hashCode();
+    public boolean isAfter(java.time.YearMonth arg);
+    public boolean isBefore(java.time.YearMonth arg);
+    public boolean isValidDay(int arg);
+    public int lengthOfMonth();
+    public int lengthOfYear();
+    public java.time.YearMonth minus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.YearMonth minusMonths(long arg);
+    public java.time.YearMonth minusYears(long arg);
+    public static java.time.YearMonth now();
+    public static java.time.YearMonth now(java.time.Clock arg);
+    public static java.time.YearMonth now(java.time.ZoneId arg);
+    public static java.time.YearMonth of(int arg1, java.time.Month arg2);
+    public static java.time.YearMonth of(int arg1, int arg2);
+    public static java.time.YearMonth parse(java.lang.CharSequence arg);
+    public java.time.YearMonth plus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.YearMonth plusMonths(long arg);
+    public java.time.YearMonth plusYears(long arg);
+    public string toString();
+    public java.time.YearMonth withMonth(int arg);
+    public java.time.YearMonth withYear(int arg);
+}
+
+
+public abstract class ZoneId
+{
+    public readonly abstract string id;
+    public boolean equals(object arg);
+    public int hashCode();
+    public static java.time.ZoneId of(string arg);
+    public static java.time.ZoneId of(string arg1, java.util.Map arg2);
+    public static java.time.ZoneId systemDefault();
+    public string toString();
+}
+
+public final class ZoneOffset
+        extends java.time.ZoneId, java.lang.Comparable, java.io.Serializable
+  property "valueClass" "true"
+{
+    public static final readonly java.time.ZoneOffset MAX;
+    public static final readonly java.time.ZoneOffset MIN;
+    public static final readonly java.time.ZoneOffset UTC;
+    public readonly string id;
+    public readonly int totalSeconds;
+    public int compareTo(java.time.ZoneOffset arg);
+    public boolean equals(object arg);
+    public int hashCode();
+    public static java.time.ZoneOffset of(string arg);
+    public static java.time.ZoneOffset ofHours(int arg);
+    public static java.time.ZoneOffset ofHoursMinutes(int arg1, int arg2);
+    public static java.time.ZoneOffset ofHoursMinutesSeconds(int arg1, int arg2, int arg3);
+    public static java.time.ZoneOffset ofTotalSeconds(int arg);
+    public string toString();
+}
+
+public final class ZonedDateTime
+        extends java.io.Serializable
+  property de.reload "true"
+  property "valueClass" "true"
+{
+    public readonly int dayOfMonth;
+    public readonly java.time.DayOfWeek dayOfWeek;
+    public readonly int dayOfYear;
+    public readonly int hour;
+    public readonly int minute;
+    public readonly java.time.Month month;
+    public readonly int monthValue;
+    public readonly int nano;
+    public readonly java.time.ZoneOffset offset;
+    public readonly int second;
+    public readonly int year;
+    public readonly java.time.ZoneId zone;
+	
+	public static ilog.rules.brl.Date toDate(java.lang.Object value);
+    public java.util.Date toJavaUtilDate();
+	
+    public boolean equals(object arg);
+    public int hashCode();
+    public boolean isAfter(java.time.ZonedDateTime arg);
+    public boolean isBefore(java.time.ZonedDateTime arg);
+    public boolean isEqual(java.time.ZonedDateTime arg);
+    public java.time.ZonedDateTime minus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.ZonedDateTime minus(java.time.temporal.TemporalAmount amountToSubtract);
+    public java.time.ZonedDateTime minusDays(long arg);
+    public java.time.ZonedDateTime minusHours(long arg);
+    public java.time.ZonedDateTime minusMinutes(long arg);
+    public java.time.ZonedDateTime minusMonths(long arg);
+    public java.time.ZonedDateTime minusNanos(long arg);
+    public java.time.ZonedDateTime minusSeconds(long arg);
+    public java.time.ZonedDateTime minusWeeks(long arg);
+    public java.time.ZonedDateTime minusYears(long arg);
+    public static java.time.ZonedDateTime now();
+    public static java.time.ZonedDateTime now(java.time.Clock arg);
+    public static java.time.ZonedDateTime now(java.time.ZoneId arg);
+    public static java.time.ZonedDateTime of(java.time.LocalDateTime arg1, java.time.ZoneId arg2);
+    public static java.time.ZonedDateTime of(java.time.LocalDate arg1, java.time.LocalTime arg2, java.time.ZoneId arg3);
+    public static java.time.ZonedDateTime of(int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, java.time.ZoneId arg8);
+    public static java.time.ZonedDateTime ofInstant(java.time.Instant arg1, java.time.ZoneId arg2);
+    public static java.time.ZonedDateTime ofInstant(java.time.LocalDateTime arg1, java.time.ZoneOffset arg2, java.time.ZoneId arg3);
+    public static java.time.ZonedDateTime ofLocal(java.time.LocalDateTime arg1, java.time.ZoneId arg2, java.time.ZoneOffset arg3);
+    public static java.time.ZonedDateTime ofStrict(java.time.LocalDateTime arg1, java.time.ZoneOffset arg2, java.time.ZoneId arg3);
+    public static java.time.ZonedDateTime parse(java.lang.CharSequence arg);
+    public java.time.ZonedDateTime plus(long arg1, java.time.temporal.TemporalUnit arg2);
+    public java.time.ZonedDateTime plus(java.time.temporal.TemporalAmount amountToAdd);
+    public java.time.ZonedDateTime plusDays(long arg);
+    public java.time.ZonedDateTime plusHours(long arg);
+    public java.time.ZonedDateTime plusMinutes(long arg);
+    public java.time.ZonedDateTime plusMonths(long arg);
+    public java.time.ZonedDateTime plusNanos(long arg);
+    public java.time.ZonedDateTime plusSeconds(long arg);
+    public java.time.ZonedDateTime plusWeeks(long arg);
+    public java.time.ZonedDateTime plusYears(long arg);
+    public long toEpochSecond();
+    public java.time.Instant toInstant();
+    public java.time.LocalDate toLocalDate();
+    public java.time.LocalDateTime toLocalDateTime();
+    public java.time.LocalTime toLocalTime();
+    public java.time.OffsetDateTime toOffsetDateTime();
+    public string toString();
+    public java.time.ZonedDateTime truncatedTo(java.time.temporal.TemporalUnit arg);
+    public java.time.ZonedDateTime withDayOfMonth(int arg);
+    public java.time.ZonedDateTime withDayOfYear(int arg);
+    public java.time.ZonedDateTime withEarlierOffsetAtOverlap();
+    public java.time.ZonedDateTime withFixedOffsetZone();
+    public java.time.ZonedDateTime withHour(int arg);
+    public java.time.ZonedDateTime withLaterOffsetAtOverlap();
+    public java.time.ZonedDateTime withMinute(int arg);
+    public java.time.ZonedDateTime withMonth(int arg);
+    public java.time.ZonedDateTime withNano(int arg);
+    public java.time.ZonedDateTime withSecond(int arg);
+    public java.time.ZonedDateTime withYear(int arg);
+    public java.time.ZonedDateTime withZoneSameInstant(java.time.ZoneId arg);
+    public java.time.ZonedDateTime withZoneSameLocal(java.time.ZoneId arg);
+}
+
+package java.time.temporal;
+
+public interface TemporalField
+{
+
+}
+
+public interface TemporalUnit
+{
+    public readonly abstract java.time.Duration duration;
+    public readonly abstract boolean durationEstimated;
+    public string toString();
+}
+
+public final class ChronoUnit
+        extends java.lang.Enum, java.time.temporal.TemporalUnit
+{
+    domain 
+    {
+        static NANOS,
+        static MICROS,
+        static MILLIS,
+        static SECONDS,
+        static MINUTES,
+        static HOURS,
+        static HALF_DAYS,
+        static DAYS,
+        static WEEKS,
+        static MONTHS,
+        static YEARS,
+        static DECADES,
+        static CENTURIES,
+        static MILLENNIA,
+        static ERAS,
+        static FOREVER
+    }
+    public static final readonly java.time.temporal.ChronoUnit CENTURIES;
+    public static final readonly java.time.temporal.ChronoUnit DAYS;
+    public static final readonly java.time.temporal.ChronoUnit DECADES;
+    public static final readonly java.time.temporal.ChronoUnit ERAS;
+    public static final readonly java.time.temporal.ChronoUnit FOREVER;
+    public static final readonly java.time.temporal.ChronoUnit HALF_DAYS;
+    public static final readonly java.time.temporal.ChronoUnit HOURS;
+    public static final readonly java.time.temporal.ChronoUnit MICROS;
+    public static final readonly java.time.temporal.ChronoUnit MILLENNIA;
+    public static final readonly java.time.temporal.ChronoUnit MILLIS;
+    public static final readonly java.time.temporal.ChronoUnit MINUTES;
+    public static final readonly java.time.temporal.ChronoUnit MONTHS;
+    public static final readonly java.time.temporal.ChronoUnit NANOS;
+    public static final readonly java.time.temporal.ChronoUnit SECONDS;
+    public static final readonly java.time.temporal.ChronoUnit WEEKS;
+    public static final readonly java.time.temporal.ChronoUnit YEARS;
+    public readonly java.time.Duration duration;
+    public readonly boolean durationEstimated;
+    public string toString();
+    public static java.time.temporal.ChronoUnit valueOf(string arg);
+    public static java.time.temporal.ChronoUnit[] values();
+}
+
+public interface TemporalAmount {
+  java.util.List getUnits();
+  long get(java.time.temporal.TemporalUnit unit);
+}

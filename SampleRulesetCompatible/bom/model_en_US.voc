@@ -1,0 +1,9 @@
+# Vocabulary Properties
+uuid = a1c35c3f-6467-4cf5-af44-85c40fcd46c6
+
+# org.sample.Customer
+org.sample.Customer#concept.label = customer
+org.sample.Customer.birthDate#phrase.action = set the birth date of {this} to {birth date}
+org.sample.Customer.birthDate#phrase.navigation = {birth date} of {this}
+org.sample.Customer.name#phrase.action = set the name of {this} to {name}
+org.sample.Customer.name#phrase.navigation = {name} of {this}

@@ -1,0 +1,15 @@
+
+#loadGetterSetterAsProperties
+property origin "xom:/SampleRulesetStrict//SampleXomStrict"
+property uuid "e6e6d36d-fe60-4dee-b7ae-539dd2f51899"
+package org.sample;
+
+
+class Customer
+{
+    java.time.ZonedDateTime birthDate;
+    string name;
+    Customer(string arg1, java.time.ZonedDateTime arg2);
+    Customer();
+}
+

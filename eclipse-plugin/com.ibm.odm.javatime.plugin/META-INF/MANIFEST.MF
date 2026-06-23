@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ODM Java Time Support
+Bundle-SymbolicName: com.ibm.odm.javatime.plugin;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.ibm.odm.javatime.Activator
+Bundle-Vendor: IBM
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.jface,
+ org.eclipse.emf.common;bundle-version="[2.20.0,3.0.0)",
+ org.eclipse.emf.ecore;bundle-version="[2.20.0,3.0.0)",
+ ilog.rules.studio.model;bundle-version="[9.5.0,10.0.0)",
+ ilog.rules.studio.ui;bundle-version="[9.5.0,10.0.0)",
+ com.ibm.rules.studio.model.decisionservice;bundle-version="[9.5.0,10.0.0)";resolution:=optional
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-ActivationPolicy: lazy
+Export-Package: com.ibm.odm.javatime,
+ com.ibm.odm.javatime.actions,
+ com.ibm.odm.javatime.handlers,
+ com.ibm.odm.javatime.utils

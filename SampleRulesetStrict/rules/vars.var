@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:VariableSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>vars</name>
+  <uuid>e49e63c0-8f02-4847-a5cf-b95b5b589bb5</uuid>
+  <variables name="customer" type="org.sample.Customer" initialValue="" verbalization="the customer"/>
+  <variables name="now" type="java.time.ZonedDateTime" initialValue="" verbalization="now"/>
+</ilog.rules.studio.model.base:VariableSet>
