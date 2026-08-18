@@ -6,12 +6,12 @@
   <definition><![CDATA[definitions
 	set 'birth date' to the birth date of 'the customer' as time.date & time in "Europe/Paris"; 
 	set 'today' to now as time.date & time in "Europe/Paris"; 
-	set 'birhday' to 'birth date' + the duration in years between 'birth date' and today;
+	set 'birthday' to 'birth date' + the duration in years between 'birth date' and today;
 if 
-	birhday is after today 
+	birthday is after today 
 then 
-	print "Only " + the number of days between today and birhday + " days left until your birthday.";
+	print "Only " + the number of days between today and birthday + " days left until your birthday.";
 else
-	print "Only " + the number of days between today and (birhday + 1 year) + " days left until your birthday.";
+	print "Only " + the number of days between today and (birthday + 1 year) + " days left until your birthday.";
 	]]></definition>
 </ilog.rules.studio.model.brl:ActionRule>
