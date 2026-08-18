@@ -39,9 +39,11 @@
       <directory>${project.basedir}/../SampleRulesetCompatible/rules</directory>
       <outputDirectory>SampleRulesetCompatible/rules</outputDirectory>
       <includes>
-        <include>*.brl</include>
-        <include>*.rfl</include>
-        <include>*.var</include>
+        <include>**/*.brl</include>
+        <include>**/*.dta</include>
+        <include>**/*.rfl</include>
+        <include>**/*.var</include>
+        <include>**/.rulepackage</include>
       </includes>
     </fileSet>
   </fileSets>
