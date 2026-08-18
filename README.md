@@ -29,7 +29,7 @@ The `java.util.Date` class and `java.time` APIs can interoperate, enabling a smo
 
 Here are the various steps to follow:
 
-1. unzip [javatime-compatible-1.0.1-distribution.zip](https://github.com/DecisionsDev/odm-javatime/releases/download/1.0.1/javatime-compatible-1.0.1-distribution.zip)
+1. unzip [javatime-compatible-1.0.1-distribution.zip](https://github.com/DecisionsDev/odm-javatime/releases/download/v1.0.1/javatime-compatible-1.0.1-distribution.zip)
 2. import the projects into your Rule Designer workspace
 
 The following projects have been added:
@@ -77,7 +77,7 @@ For new projects, you can rely exclusively on the `java.time` package without in
 
 Here are the various steps to follow:
 
-1. unzip [javatime-strict-1.0.1-distribution.zip](https://github.com/DecisionsDev/odm-javatime/releases/download/1.0.1/javatime-strict-1.0.1-distribution.zip)
+1. unzip [javatime-strict-1.0.1-distribution.zip](https://github.com/DecisionsDev/odm-javatime/releases/download/v1.0.1/javatime-strict-1.0.1-distribution.zip)
 2. import the projects into your Rule Designer workspace
 
 The following projects have been added:
@@ -119,7 +119,7 @@ The Eclipse plugin provides another way to use the Java Time extension in Rule D
 
 The plugin is packaged as an Eclipse update site.
 
-1. Obtain the versioned update site archive from the release [javatime update site 1.0.1](https://github.com/DecisionsDev/odm-javatime/releases/download/1.0.1/com.ibm.odm.javatime.updatesite-1.0.1.zip)
+1. Obtain the versioned update site archive from the release [javatime update site 1.0.1](https://github.com/DecisionsDev/odm-javatime/releases/download/v1.0.1/com.ibm.odm.javatime.updatesite-1.0.1.zip)
 2. In Eclipse / Rule Designer, open **Help** → **Install New Software...**
 3. Add the update site archive
 4. Select the ODM Java Time feature and complete the installation
