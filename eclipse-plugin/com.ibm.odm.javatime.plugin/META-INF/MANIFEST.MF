@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ODM Java Time Support
 Bundle-SymbolicName: com.ibm.odm.javatime.plugin;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.1
 Bundle-Activator: com.ibm.odm.javatime.Activator
 Bundle-Vendor: IBM
 Require-Bundle: org.eclipse.ui,

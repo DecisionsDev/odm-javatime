@@ -2,7 +2,7 @@
 <feature
       id="com.ibm.odm.javatime.feature"
       label="Java Time Extension"
-      version="1.0.0">
+      version="1.0.1">
 
    <description url="https://github.com/DecisionsDev/odm-javatime">
       Operation Decision Manager Java Time Extension
