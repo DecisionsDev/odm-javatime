@@ -25,11 +25,11 @@ Introduced in Java 8, the `java.time` package defines key date-time concepts suc
 
 ## Working on existing projects
 
-The `java.util.Date` class and `java.time` APIs can interoperate, enabling a smooth migration path from the legacy date system to the modern Java 8 `java.time` package. The `javatime-compatible-1.0.0-distribution.zip` has been designed for gradual adoption, with the option to eventually phase out `java.util.Date` entirely.
+The `java.util.Date` class and `java.time` APIs can interoperate, enabling a smooth migration path from the legacy date system to the modern Java 8 `java.time` package. The `javatime-compatible-1.0.1-distribution.zip` has been designed for gradual adoption, with the option to eventually phase out `java.util.Date` entirely.
 
 Here are the various steps to follow:
 
-1. unzip [javatime-compatible-1.0.0-distribution.zip](https://github.com/DecisionsDev/odm-javatime/releases/download/1.0.0/javatime-compatible-1.0.0-distribution.zip)
+1. unzip [javatime-compatible-1.0.1-distribution.zip](https://github.com/DecisionsDev/odm-javatime/releases/download/1.0.1/javatime-compatible-1.0.1-distribution.zip)
 2. import the projects into your Rule Designer workspace
 
 The following projects have been added:
@@ -77,7 +77,7 @@ For new projects, you can rely exclusively on the `java.time` package without in
 
 Here are the various steps to follow:
 
-1. unzip [javatime-strict-1.0.0-distribution.zip](https://github.com/DecisionsDev/odm-javatime/releases/download/1.0.0/javatime-strict-1.0.0-distribution.zip)
+1. unzip [javatime-strict-1.0.1-distribution.zip](https://github.com/DecisionsDev/odm-javatime/releases/download/1.0.1/javatime-strict-1.0.1-distribution.zip)
 2. import the projects into your Rule Designer workspace
 
 The following projects have been added:
@@ -119,7 +119,7 @@ The Eclipse plugin provides another way to use the Java Time extension in Rule D
 
 The plugin is packaged as an Eclipse update site.
 
-1. Obtain the versioned update site archive from the release [javatime update site 1.0.0](https://github.com/DecisionsDev/odm-javatime/releases/download/1.0.0/com.ibm.odm.javatime.updatesite-1.0.0.zip)
+1. Obtain the versioned update site archive from the release [javatime update site 1.0.1](https://github.com/DecisionsDev/odm-javatime/releases/download/1.0.1/com.ibm.odm.javatime.updatesite-1.0.1.zip)
 2. In Eclipse / Rule Designer, open **Help** → **Install New Software...**
 3. Add the update site archive
 4. Select the ODM Java Time feature and complete the installation
@@ -215,9 +215,9 @@ After a successful build, you'll find:
 
 | Artifact | Location | Description |
 | --- | --- | --- |
-| Compatible Distribution | `javatime-compatible/target/javatime-compatible-1.0.0-distribution.zip` | ZIP containing JavaTimeModelCompatible and sample projects for gradual migration |
-| Strict Distribution | `javatime-strict/target/javatime-strict-1.0.0-distribution.zip` | ZIP containing JavaTimeModelStrict and sample projects for new projects |
-| Eclipse Update Site | `eclipse-plugin/JavaTimeUpdate/target/com.ibm.odm.javatime.updatesite-1.0.0.zip` | Eclipse plugin update site archive for installation in Rule Designer |
+| Compatible Distribution | `javatime-compatible/target/javatime-compatible-1.0.1-distribution.zip` | ZIP containing JavaTimeModelCompatible and sample projects for gradual migration |
+| Strict Distribution | `javatime-strict/target/javatime-strict-1.0.1-distribution.zip` | ZIP containing JavaTimeModelStrict and sample projects for new projects |
+| Eclipse Update Site | `eclipse-plugin/JavaTimeUpdate/target/com.ibm.odm.javatime.updatesite-1.0.1.zip` | Eclipse plugin update site archive for installation in Rule Designer |
 
 
 # Issues and contributions
